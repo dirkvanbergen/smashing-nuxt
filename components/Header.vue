@@ -13,6 +13,7 @@
                 <span class="menu__title">{{item.fields.title}}</span>
                 <nuxt-link v-for="(page, index) in getPages(item)" :key="index" :to="{name:'custom', params: {item: item.fields.slug, page: page.fields.slug}}">{{page.fields.title}}</nuxt-link>
             </div>
+            <nuxt-link :to="{name:'lid-worden'}">Lid worden</nuxt-link>
         </nav>
     </div>
 </template>
