@@ -1,9 +1,10 @@
 <template>
     <article>
-        <div v-if="currentPage">
+        <div v-if="!isLoading && !isNotFound">
             <h1>{{currentPage.fields.title}}</h1>
             <p>{{currentPage.fields.content}}</p>
         </div>
+        <div v-else-if="isLoading">Loading</div>
         <div v-else>Not Found</div>
     </article>
 </template>
@@ -15,11 +16,14 @@ export default {
             return this.$store.state.page.currentPage
         },
         isLoading() {
-            return this.$store.state.team.isLoading
+            return this.$store.state.page.isLoading
+        },
+        isNotFound() {
+            return this.$store.state.page.isNotFound
         }
     },
     async fetch({ store, params }) {
-        await store.dispatch('page/getPageBySlug', params.item, params.slug)
+        await store.dispatch('page/getPageBySlug', {item: params.item, slug: params.page})
     }
 }
 </script>

@@ -9,7 +9,7 @@
                 <span class="menu__title">Teams</span>
                 <nuxt-link v-for="(team, index) in teams" :key="index" :to="{name:'teams-slug', params: {slug: team.fields.slug}}">{{team.fields.title}}</nuxt-link>
             </div>
-            <div class="menu__item" v-for="(item, index) in menuItems" :key="index">
+            <div class="menu__item" v-for="(item, index) in items" :key="index">
                 <span class="menu__title">{{item.fields.title}}</span>
                 <nuxt-link v-for="(page, index) in getPages(item)" :key="index" :to="{name:'custom', params: {item: item.fields.slug, page: page.fields.slug}}">{{page.fields.title}}</nuxt-link>
             </div>
@@ -19,32 +19,13 @@
 
 <script>
 export default {
-    computed: {
-        teams() {
-            return this.$store.state.teams.teams
-        },
-        pages() {
-            return this.$store.state.pages.headers
-        },
-        menuItems() {
-            const reducer = (acc, val) => {
-                if (acc.filter(item => item.sys.id === val.fields.parent.sys.id).length === 0) { acc.push(val.fields.parent); return acc; }
-            }
-            var items = this.pages.reduce(reducer, [])
-            items.sort((a, b) => a.fields.order - b.fields.order)
-            return items
-        }
-    },
+    props: ['teams', 'items', 'pages'],
     methods: {
         getPages(menuItem) {
             var pages = this.pages.filter(page => page.fields.parent.sys.id === menuItem.sys.id)
             pages.sort((a, b) => a.fields.order - b.fields.order)
             return pages;
         }
-    },
-    async created() {
-        await this.$store.dispatch('teams/getTeams', {self:this});
-        await this.$store.dispatch('pages/getPageHeaders', {self:this});
     }
 }
 </script>
