@@ -32,7 +32,6 @@ export const actions = {
         } else {
             commit('setCurrentPage', result[0])
         }
-        console.log("Loading -> false")
         commit('setLoading', false)
     }
 }
