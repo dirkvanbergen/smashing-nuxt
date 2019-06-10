@@ -1,4 +1,8 @@
-module.exports = {
+require('dotenv').config()
+const contentful = require('contentful')
+
+module.exports = {  
+  modules: ['@nuxtjs/dotenv', '~modules/blacklist-routes.js'],
   /*
   ** Headers of the page
   */
@@ -18,6 +22,18 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   /*
+  ** Extend router to support dynamic page structure
+  */
+  router: {
+    extendRoutes (routes, resolve) {
+      routes.push({
+        name: 'custom',
+        path: '/:item/:page',
+        component: resolve(__dirname, 'pages/content.vue')
+      })
+    }
+  },
+  /*
   ** Build configuration
   */
   build: {
@@ -33,7 +49,44 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      config.node = {
+        fs: 'empty'
+      }
     }
+  },
+  generate: {
+    routes: () => {
+      const client = contentful.createClient({
+        space:  process.env.CTF_SPACE_ID,
+        accessToken: process.env.CTF_CD_ACCESS_TOKEN
+      });
+
+      const teamRoutes = client.getEntries({
+          content_type: 'team'
+      }).then((response) => {
+          return response.items.map(entry => {
+              return {
+                  route: `/teams/${entry.fields.slug}`,
+                  payload: entry
+              };
+          });
+      });
+
+      const pageRoutes = client.getEntries({
+          content_type: 'page',
+      }).then((response) => {
+          return response.items.map(entry => {
+              return {
+                  route: `/${entry.fields.parent.fields.slug}/${entry.fields.slug}`,
+                  payload: entry
+              };
+          });
+      });
+      
+      return Promise.all([teamRoutes, pageRoutes]).then((routes) => {
+        return routes[0].concat(routes[1])
+      })
+    },
   }
 }
 
