@@ -1,5 +1,8 @@
 <template>
-    <div>Lid worden!</div>
+    <div>
+        <h1>Lid worden!</h1>
+        <form action=""></form>
+    </div>
 </template>
 
 <script>

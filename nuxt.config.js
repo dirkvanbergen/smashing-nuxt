@@ -3,6 +3,7 @@ const contentful = require('contentful')
 
 module.exports = {  
   modules: ['@nuxtjs/dotenv', '~modules/blacklist-routes.js'],
+  devModules: ['@nuxtjs/tailwindcss'],
   /*
   ** Headers of the page
   */
