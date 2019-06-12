@@ -19,14 +19,33 @@
 </template>
 
 <script>
-export default {
-    props: ['teams', 'items', 'pages'],
+export default {  
+    computed: {
+        teams() {
+            return this.$store.state.teams.teams
+        },
+        pages() {
+            return this.$store.state.pages.headers
+        },
+        menuItems() {
+            const reducer = (acc, val) => {
+                if (acc.filter(item => item.sys.id === val.fields.parent.sys.id).length === 0) { acc.push(val.fields.parent); return acc; }
+            }
+            var items = this.pages.reduce(reducer, [])
+            items.sort((a, b) => a.fields.order - b.fields.order)
+            return items
+        }
+    },
     methods: {
         getPages(menuItem) {
             var pages = this.pages.filter(page => page.fields.parent.sys.id === menuItem.sys.id)
             pages.sort((a, b) => a.fields.order - b.fields.order)
             return pages;
         }
+    },
+    async fetch({store, params}) {
+        await store.dispatch('teams/getTeams', {self:this});
+        await store.dispatch('pages/getPageHeaders', {self:this});
     }
 }
 </script>
