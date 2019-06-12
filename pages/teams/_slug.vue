@@ -20,6 +20,9 @@ export default {
     },
     async fetch({ store, params }) {
         await store.dispatch('team/getTeamBySlug', params.slug)
+        
+        await store.dispatch('teams/getTeams');
+        await store.dispatch('pages/getPageHeaders');
     }
 }
 </script>
