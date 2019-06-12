@@ -20,14 +20,29 @@
 
 <script>
 export default {
-    props: ['teams', 'items', 'pages'],
     methods: {
         getPages(menuItem) {
             var pages = this.pages.filter(page => page.fields.parent.sys.id === menuItem.sys.id)
             pages.sort((a, b) => a.fields.order - b.fields.order)
             return pages;
         }
+    },
+  computed: {
+    teams() {
+      return this.$store.state.teams.teams
+    },
+    pages() {
+      return this.$store.state.pages.headers
+    },
+    items() {
+      const reducer = (acc, val) => {
+        if (acc.filter(item => item.sys.id === val.fields.parent.sys.id).length === 0) { acc.push(val.fields.parent); return acc; }
+      }
+      var items = this.pages.reduce(reducer, [])
+      items.sort((a, b) => a.fields.order - b.fields.order)
+      return items
     }
+  }
 }
 </script>
 
