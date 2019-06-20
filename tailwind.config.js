@@ -5,7 +5,17 @@
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
 module.exports = {
-  theme: {},
+  theme: {
+    extend: {
+      colors: {
+        'smashing': {
+          lighter: '#f88',
+          default: '#f00',
+          dark: '#b00',
+        },
+      }
+    }
+  },
   variants: {},
   plugins: []
 }
