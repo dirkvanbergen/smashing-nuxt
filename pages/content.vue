@@ -30,7 +30,6 @@ export default {
     async fetch({ store, params }) {
         await store.dispatch('page/getPageBySlug', {item: params.item, slug: params.page})
         
-        await store.dispatch('teams/getTeams');
         await store.dispatch('pages/getPageHeaders');
     }
 }

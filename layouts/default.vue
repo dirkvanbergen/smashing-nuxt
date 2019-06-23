@@ -4,17 +4,18 @@
     <div class="container mx-auto flex-grow">
       <nuxt/>
     </div>
-    <div class="footer w-full p-4 pin-b border-t">
+    <Footer class="footer w-full p-4 pin-b">
       This is the footer
-    </div>
+    </Footer>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export default {
-components: { Header }
+components: { Header, Footer }
 }
 </script>
 

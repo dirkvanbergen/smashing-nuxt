@@ -13,7 +13,8 @@ export const mutations = {
 export const actions = {
     async getNews({commit}) {
         const response = await client.getEntries({
-            content_type: 'news'
+            content_type: 'news',
+            order: '-sys.createdAt'
         })
         if (response.items.length > 0) {
             commit('setNews', response.items)

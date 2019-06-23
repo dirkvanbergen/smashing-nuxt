@@ -1,9 +1,10 @@
 <template>
-  <div class="mb-8">
+  <div class="mb-8 shadow">
     <nav class="bg-smashing p-6">
-      <div class="container mx-auto flex items-center justify-between flex-wrap">
+      <div class="container mx-auto flex items-center justify-between flex-wrap relative">
         <nuxt-link :to="{name:'index'}" class="flex items-center flex-shrink-0 text-white mr-2 md:mr-6">
-          <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+          <img src="@/static/images/LogSma.svg" alt="smashing logo" class="fill-current h-8 w-8 mr-2" width="54" height="54">
+          <!-- <svg viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg> -->
           <span class="font-bold text-3xl tracking-tight">Smashing'72</span>
         </nuxt-link>
         <div class="block lg:hidden">

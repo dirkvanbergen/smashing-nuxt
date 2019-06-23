@@ -8,7 +8,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'smashing-nuxt',
+    title: 'Smashing \'72 - De leukste volleybalvereniging van Diemen!',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
