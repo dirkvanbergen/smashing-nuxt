@@ -2,11 +2,12 @@ require('dotenv').config()
 const contentful = require('contentful')
 
 module.exports = {  
-  modules: ['@nuxtjs/dotenv', '~modules/blacklist-routes.js'],
+  modules: ['@nuxtjs/dotenv', '@nuxtjs/markdownit', '~modules/blacklist-routes.js'],
   devModules: ['@nuxtjs/tailwindcss'],
   /*
   ** Headers of the page
   */
+  markdownit: { injected: true },
   head: {
     title: 'Smashing \'72 - De leukste volleybalvereniging van Diemen!',
     meta: [

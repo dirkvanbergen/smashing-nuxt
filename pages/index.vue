@@ -10,9 +10,8 @@
         <h2
           class="text-xl text-bold mb-1 border-smashing border-b text-smashing"
         >{{post.fields.title}}</h2>
-        <p>
-          <span class="text-smashing pr-1">{{post.sys.createdAt | formatDate}}</span>
-          {{post.fields.content}}
+        <span class="text-smashing pr-1">{{post.sys.createdAt | formatDate}}</span>
+        <p v-html="$md.render(post.fields.content)">
         </p>
       </li>
     </ul>
