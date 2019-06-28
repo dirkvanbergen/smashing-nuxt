@@ -10,8 +10,8 @@
         <h2
           class="text-xl text-bold mb-1 border-smashing border-b text-smashing"
         >{{post.fields.title}}</h2>
-        <span class="text-smashing pr-1">{{post.sys.createdAt | formatDate}}</span>
-        <p v-html="$md.render(post.fields.content)">
+        <div class="text-smashing pr-1">{{post.sys.createdAt | formatDate}}</div>
+        <p class="article" v-html="$md.render(post.fields.content)" @click="clickText">
         </p>
       </li>
     </ul>
@@ -19,6 +19,14 @@
 </template>
 <script>
 export default {
+  methods: {
+    clickText(e){
+      let target = e.target || e.srcElement;
+      if (target && target.tagName === "IMG") {
+        window.open(target.src);
+      }
+    }
+  },  
   computed: {
     news() {
       return this.$store.state.news.news;
@@ -38,5 +46,11 @@ export default {
 };
 </script>
 <style>
+.article img {
+  max-width: 100%;
+  max-height: 360px;
+  margin: 0 auto;
+  cursor: pointer;
+}
 </style>
 

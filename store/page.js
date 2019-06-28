@@ -34,6 +34,7 @@ export const actions = {
       commit("setNotFound", true)
     } else {
       commit("setCurrentPage", result[0])
+      commit("setNotFound", false)
     }
     commit("setLoading", false)
   }
