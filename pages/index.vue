@@ -10,9 +10,9 @@
           class="text-xl text-bold mb-1 border-smashing border-b text-smashing"
         >{{post.fields.title}}</h2>
         <div class="text-smashing pr-1">{{post.sys.createdAt | formatDate}}</div>
-        <p class="article" v-html="$md.render(post.fields.content)" @click="clickText"></p>
-        <div class="attachments flex flex-row flex-wrap -mx-2" v-if="post.fields.attachments && post.fields.attachments.length > 0">
-          <div class="attachment flex-grow-0 flex-shrink-0 w-1/2 xl:w-1/6 md:w-1/4 p-2" v-for="(attachment, attachmentIndex) in post.fields.attachments" :key="attachmentIndex">
+        <div v-html="$md.render(post.fields.content)"></div>
+        <div class="flex flex-row flex-wrap -mx-2" v-if="post.fields.attachments && post.fields.attachments.length > 0">
+          <div class="flex-grow-0 flex-shrink-0 w-1/2 xl:w-1/6 md:w-1/4 p-2" v-for="(attachment, attachmentIndex) in post.fields.attachments" :key="attachmentIndex">
             <img class="cursor-pointer rounded" @click="clickImage" :src="attachment.fields.file.url" :alt="attachment.fields.title" v-if="attachment.fields.file.contentType.startsWith('image/')" />
             <a class="block text-center h-full flex flex-col-reverse justify-between p-2 border rounded relative" v-else :href="attachment.fields.file.url" target="_blank">{{attachment.fields.title}}
               <img src="@/static/images/ball.svg" class="self-center w-1/2 h-1/2 mt-2"></a>          
