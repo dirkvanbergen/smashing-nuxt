@@ -47,7 +47,7 @@ export default {
   },
   filters: {
     formatDate: str => {
-      var options = { year: "numeric", month: "long", day: "numeric" };
+      var options = { year: "numeric", month: "numeric", day: "numeric" };
       var date = new Date(str);
       return date.toLocaleDateString("nl-NL", options);
     }
@@ -58,12 +58,4 @@ export default {
   }
 };
 </script>
-<style>
-.attachment a {
-  background-image: url("/static/images/dames-1.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 48px 48px;
-}
-</style>
 
