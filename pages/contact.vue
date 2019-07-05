@@ -1,7 +1,8 @@
 <template>
   <div class="w-1/2 mx-auto">
     <h1 class="text-smashing text-2xl text-bold">Contact</h1>
-    <form name="contact" method="POST" action="/bedankt" netlify>
+    <p>Heb je een vraag, of een opmerking? Of wil je gewoon wat kwijt aan de vereniging? Laat het ons hier weten!</p>
+    <form class="mt-4" name="contact" method="POST" action="/bedankt" netlify netlify-honeypot="bot-field" >
       <p class="py-1">
         <label class="flex justify-between items-center" for="naam">
           <span>Naam</span>
@@ -22,6 +23,7 @@
           >
         </label>
       </p>
+      <p class="hidden"><label>Dit veld niet invullen <input name="bot-field" /></label></p>
       <p class="py-1">
         <label class="flex-col" for="bericht">
           <span>Bericht</span>

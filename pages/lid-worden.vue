@@ -1,7 +1,12 @@
 <template>
   <div class="w-1/2 mx-auto">
     <h1 class="text-smashing text-2xl text-bold">Lid worden</h1>
-    <form name="lid-worden" method="POST" netlify-honeypot="bot-field" action="/bedankt" netlify>
+    <p>
+      Bij Smashing '72 kun je 3 keer gratis op proef komen meetrainen voordat je gevraagd wordt te kiezen voor wel of niet lid worden. 
+      <br />We trainen op maandagavond en woensdagavond in de Sporthal aan de Bernardlaan in Diemen. 
+    </p>
+    <form class="mt-4" name="lid-worden" method="POST" netlify-honeypot="bot-field" action="/bedankt" netlify>
+      <p>Vul dit formulier in om in contact te komen met de juiste persoon</p>
       <p class="py-1">
         <label class="flex justify-between items-center" for="naam">
           <span>Naam</span>

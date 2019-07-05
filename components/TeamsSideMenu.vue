@@ -1,6 +1,6 @@
 <template>
   <div class="side-menu flex flex-col shadow px-4 pb-2">
-    <h1 class="text-xl text-semibold py-4 mb-1 border-b">Teams</h1>
+    <h1 class="text-xl text-semibold py-4 mb-1 border-b"><nuxt-link class="hover:underline" :to="{name: 'teams'}">Teams</nuxt-link></h1>
     <nuxt-link
       class="my-2 hover:underline"
       :to="{name: 'teams-slug', params: {slug: link.fields.slug}}"
