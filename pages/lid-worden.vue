@@ -5,7 +5,7 @@
       Bij Smashing '72 kun je 3 keer gratis op proef komen meetrainen voordat je gevraagd wordt te kiezen voor wel of niet lid worden. 
       <br />We trainen op maandagavond en woensdagavond in de Sporthal aan de Bernardlaan in Diemen. 
     </p>
-    <form class="mt-4" name="lid-worden" method="POST" netlify-honeypot="bot-field" action="/bedankt" netlify>
+    <form class="mt-4" name="lid-worden" method="POST" action="/bedankt" netlify netlify-honeypot="bot-field">
       <p>Vul dit formulier in om in contact te komen met de juiste persoon</p>
       <p class="py-1">
         <label class="flex justify-between items-center" for="naam">
@@ -47,7 +47,7 @@
             class="w-2/4 border-gray-500 focus:shadow border p-1 rounded"
             name="team"
           >
-          <option v-for="team in teams" :key="team.fields.slug">{{team.fields.title}} - {{team.fields.level}}</option>
+          <option v-for="team in teams" :key="team.fields.slug" :value="team.fields.title">{{team.fields.title}} - {{team.fields.level}}</option>
           </select>
         </label>
       </p>
