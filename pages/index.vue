@@ -6,21 +6,34 @@
     >
     <ul v-if="news" class="px-2">
       <li v-for="(post, index) in news" :key="index" class="pb-4">
-        <!-- <nuxt-link :to="{name: 'nieuws-slug', params: {slug: post.fields.slug}}">{{post.fields.title}}</nuxt-link> -->
         <h2
           class="text-xl text-bold mb-1 border-smashing border-b text-smashing"
         >{{post.fields.title}}</h2>
         <div class="text-smashing pr-1">{{post.sys.createdAt | formatDate}}</div>
-        <p class="article" v-html="$md.render(post.fields.content)" @click="clickText">
-        </p>
+        <p class="article" v-html="$md.render(post.fields.content)" @click="clickText"></p>
+        <div class="attachments flex flex-row flex-wrap -mx-2" v-if="post.fields.attachments && post.fields.attachments.length > 0">
+          <div class="attachment flex-grow-0 flex-shrink-0 w-1/6 p-2" v-for="(attachment, attachmentIndex) in post.fields.attachments" :key="attachmentIndex">
+            <img class="cursor-pointer rounded" @click="clickImage" :src="attachment.fields.file.url" :alt="attachment.fields.title" v-if="attachment.fields.file.contentType.startsWith('image/')" />
+            <a class="block text-center h-full flex flex-col-reverse justify-between p-2 border rounded relative" v-else :href="attachment.fields.file.url">{{attachment.fields.title}}
+              <img src="@/static/images/ball.svg" class="self-center w-1/2 h-1/2 mt-2"></a>          
+          </div>
+        </div>
       </li>
     </ul>
   </section>
 </template>
 <script>
+if (!String.prototype.startsWith) {
+    Object.defineProperty(String.prototype, 'startsWith', {
+        value: function(search, pos) {
+            pos = !pos || pos < 0 ? 0 : +pos;
+            return this.substring(pos, pos + search.length) === search;
+        }
+    });
+}
 export default {
   methods: {
-    clickText(e){
+    clickImage(e){
       let target = e.target || e.srcElement;
       if (target && target.tagName === "IMG") {
         window.open(target.src);
@@ -46,11 +59,11 @@ export default {
 };
 </script>
 <style>
-.article img {
-  max-width: 100%;
-  max-height: 360px;
-  margin: 0 auto;
-  cursor: pointer;
+.attachment a {
+  background-image: url("/static/images/dames-1.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 48px 48px;
 }
 </style>
 
