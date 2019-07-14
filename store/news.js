@@ -11,10 +11,11 @@ export const mutations = {
 }
 
 export const actions = {
-  async getNews({ commit }) {
+  async getNews({ commit }, {limit}) {
     const response = await client.getEntries({
       content_type: "news",
-      order: "-sys.createdAt"
+      order: "-sys.createdAt",
+      limit: limit || 1000
     })
     if (response.items.length > 0) {
       commit("setNews", response.items)

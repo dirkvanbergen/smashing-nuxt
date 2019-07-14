@@ -1,9 +1,5 @@
 <template>
   <div class="container flex flex-wrap flex-row">
-    <img
-      src="@/static/images/smashing-foto-1.jpg"
-      class="-mt-8 md:px-2 w-full h-32 md:h-48 lg:h-64 object-cover object-center mb-4"
-    >
     <ul v-if="news" class="px-2">
       <li v-for="(post, index) in news" :key="index" class="pb-4">
         <h2
@@ -15,13 +11,10 @@
         </p>
       </li>
     </ul>
-    <p>
-      <nuxt-link :to="archief">Ouder nieuws ...</nuxt-link>
-    </p>
   </div>
 </template>
 <script>
-const NEWS_LIMIT = 3;
+const NEWS_LIMIT = 1000;
 export default {
   computed: {
     news() {
