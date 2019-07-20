@@ -2,9 +2,9 @@
   <div class="container flex flex-wrap flex-row">
     <img
       src="@/static/images/smashing-foto-1.jpg"
-      class="-mt-8 md:px-2 w-full h-32 md:h-48 lg:h-64 object-cover object-center mb-4"
+      class="-mt-8 w-full h-32 md:h-48 lg:h-64 object-cover object-center mb-4"
     >
-    <ul v-if="news" class="px-2">
+    <ul v-if="news" class="px-2 lg:px-0 mb-4">
       <li v-for="(post, index) in news" :key="index" class="pb-4">
         <h2
           class="text-xl text-bold mb-1 border-smashing border-b text-smashing"
@@ -19,10 +19,8 @@
           </div>
         </div>
       </li>
+      <li><nuxt-link class="text-xl text-bold mb-1 border-smashing border-b text-smashing" :to="{name: 'archief'}">Ouder nieuws ...</nuxt-link></li>
     </ul>
-    <p>
-      <nuxt-link :to="archief">Ouder nieuws ...</nuxt-link>
-    </p>
   </div>
 </template>
 <script>
