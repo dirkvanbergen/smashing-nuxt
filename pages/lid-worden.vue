@@ -8,20 +8,20 @@
     <form class="mt-4" name="lid-worden" method="POST" action="/bedankt" netlify netlify-honeypot="bot-field">
       <p>Vul dit formulier in om in contact te komen met de juiste persoon</p>
       <p class="py-1">
-        <label class="flex justify-between items-center" for="naam">
+        <label class="flex flex-col md:flex md:flex-row justify-between md:items-center">
           <span>Naam</span>
           <input
-            class="w-2/4 border-gray-500 border p-1 rounded focus:shadow"
+            class="w-full md:w-3/4 border-gray-500 focus:shadow border p-1 rounded"
             name="name"
             type="text"
           />
         </label>
       </p>
       <p class="py-1">
-        <label class="flex justify-between items-center" for="email">
+        <label class="flex flex-col md:flex md:flex-row justify-between md:items-center">
           <span>Email</span>
           <input
-            class="w-2/4 border-gray-500 focus:shadow border p-1 rounded"
+            class="w-full md:w-3/4 border-gray-500 focus:shadow border p-1 rounded"
             name="email"
             type="email"
             inputmode="email"
@@ -30,10 +30,10 @@
       </p>
       <p class="hidden"><label>Dit veld niet invullen <input name="bot-field" /></label></p>
       <p class="py-1">
-        <label class="flex justify-between items-center" for="email">
+        <label class="flex flex-col md:flex md:flex-row justify-between md:items-center">
           <span>Telefoonnummer</span>
           <input
-            class="w-2/4 border-gray-500 focus:shadow border p-1 rounded"
+            class="w-full md:w-3/5 border-gray-500 focus:shadow border p-1 rounded"
             name="telefoon"
             type="tel"
             inputmode="tel"
@@ -41,10 +41,10 @@
         </label>
       </p>
       <p class="py-1">
-        <label class="flex justify-between items-center" for="email">
+        <label class="flex flex-col md:flex md:flex-row justify-between md:items-center">
           <span>Interesse in team</span>
           <select
-            class="w-2/4 border-gray-500 focus:shadow border p-1 rounded"
+            class="w-full md:w-3/5 border-gray-500 focus:shadow border p-1 rounded"
             name="team"
           >
           <option v-for="team in teams" :key="team.fields.slug" :value="team.fields.title">{{team.fields.title}} - {{team.fields.level}}</option>

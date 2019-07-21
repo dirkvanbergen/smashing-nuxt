@@ -4,20 +4,20 @@
     <p>Heb je een vraag, of een opmerking? Of wil je gewoon wat kwijt aan de vereniging? Laat het ons hier weten!</p>
     <form class="mt-4" name="contact" method="POST" action="/bedankt" netlify netlify-honeypot="bot-field" >
       <p class="py-1">
-        <label class="flex justify-between items-center" for="naam">
+        <label class="flex flex-col md:flex md:flex-row justify-between md:items-center" for="naam">
           <span>Naam</span>
           <input
-            class="w-2/4 border-gray-500 border p-1 rounded focus:shadow"
+            class="w-full md:w-3/4 border-gray-500 focus:shadow border p-1 rounded"
             name="naam"
             type="text"
           >
         </label>
       </p>
       <p class="py-1">
-        <label class="flex justify-between items-center" for="email">
+        <label class="flex flex-col md:flex md:flex-row justify-between md:items-center" for="email">
           <span>Email</span>
           <input
-            class="w-2/4 border-gray-500 focus:shadow border p-1 rounded"
+            class="w-full md:w-3/4 border-gray-500 focus:shadow border p-1 rounded"
             name="email"
             type="email"
           >
@@ -37,7 +37,7 @@
         </label>
       </p>
       <p class="py-1 flex flex-row-reverse">
-        <button type="submit" class="w-1/4 p-1 border-gray-500 border-2 border rounded">Verstuur</button>
+        <button type="submit" class="w-full md:w-1/2 lg:w-1/4 p-1 border-gray-500 border-2 border rounded">Verstuur</button>
       </p>
     </form>
   </div>
