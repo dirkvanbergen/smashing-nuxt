@@ -21,6 +21,8 @@ export default {
       var siblings = this.$store.state.pages.headers.filter(
         page => page.fields.parent.sys.id === currentItemId
       );
+      siblings.sort((a,b) => a.fields.order - b.fields.order);
+      
       return siblings;
     }
   }

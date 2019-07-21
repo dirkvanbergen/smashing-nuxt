@@ -26,7 +26,7 @@ export const actions = {
   async getPageHeaders({ commit }) {
     const response = await client.getEntries({
       content_type: "page",
-      select: "fields.title,fields.slug,fields.parent"
+      select: "fields.title,fields.slug,fields.order,fields.parent"
     })
     if (response.items.length > 0) {
       commit("setPageHeaders", response.items)
