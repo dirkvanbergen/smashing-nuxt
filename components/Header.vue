@@ -1,6 +1,6 @@
 <template>
-  <div class="mb-8 shadow">
-    <nav class="bg-smashing p-6">
+  <div class="mb-8 shadow bg-smashing w-screen" :class="{'fixed h-screen': menuOpened}">
+    <nav class="p-6">
       <div class="container mx-auto flex items-center justify-between flex-wrap relative">
         <nuxt-link
           :to="{name:'index'}"
@@ -39,24 +39,31 @@
             <nuxt-link
               :to="{name:'index'}"
               class="text-xl block mt-4 lg:inline-block lg:mt-0 text-white font-semibold hover:underline mr-4"
+              @click.native="menuOpened=false"
             >Home</nuxt-link>
             <nuxt-link
               :to="{name:'teams'}"
               class="text-xl block mt-4 lg:inline-block lg:mt-0 text-white font-semibold hover:underline mr-4"
+              @click.native="menuOpened=false"
             >Teams</nuxt-link>
             <nuxt-link
               :key="index"
               v-for="(item, index) in items"
               :to="{name:'custom', params: {item: item.fields.slug, page: getPages(item)[0].fields.slug}}"
               class="block mt-4 text-xl lg:inline-block lg:mt-0 text-white font-semibold hover:underline mr-4"
+              @click.native="menuOpened=false"
             >{{item.fields.title}}</nuxt-link>
           </div>
           <div>
             <nuxt-link
               :to="{name:'lid-worden'}"
+              @click.native="menuOpened=false"
               class="inline-block text-lg px-4 py-2 leading-none border-2 rounded text-white border-white hover:border-transparent hover:text-smashing hover:bg-white mt-4 lg:mt-0"
             >Lid worden</nuxt-link>
-            <a href="https://smashingdiemen.teaco.nl/" target="_blank" class="inline-block text-lg px-4 py-2 leading-none border-2 rounded text-white border-white hover:border-transparent hover:text-smashing hover:bg-white mt-4 lg:mt-0">Kleding Webshop</a>
+            <a href="https://smashingdiemen.teaco.nl/"
+              @click.native="menuOpened=false" 
+              target="_blank" 
+              class="inline-block text-lg px-4 py-2 leading-none border-2 rounded text-white border-white hover:border-transparent hover:text-smashing hover:bg-white mt-4 lg:mt-0">Kleding Webshop</a>
           </div>
         </div>
       </div>
