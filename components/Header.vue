@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-8 shadow bg-smashing w-screen" :class="{'fixed h-screen': menuOpened}">
+  <div class="mb-8 shadow bg-smashing w-screen z-10" :class="{'fixed h-screen': menuOpened}">
     <nav class="p-6">
       <div class="container mx-auto flex items-center justify-between flex-wrap relative">
         <nuxt-link
