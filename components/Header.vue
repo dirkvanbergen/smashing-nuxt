@@ -19,7 +19,7 @@
         <div class="block lg:hidden">
           <button
             class="flex items-center px-3 py-2 border rounded border-2 text-white border-white"
-            @click="menuOpened=!menuOpened"
+            @click="openMenu"
           >
             <svg
               class="fill-current h-4 w-4"
@@ -85,6 +85,15 @@ export default {
       );
       pages.sort((a, b) => a.fields.order - b.fields.order);
       return pages;
+    },
+    openMenu() {
+      this.menuOpened = !this.menuOpened;
+      if (this.menuOpened)
+      {
+        document.querySelector('body').classList = "modal-open";
+      } else {
+        document.querySelector('body').classList = "";  
+      }
     }
   },
   computed: {

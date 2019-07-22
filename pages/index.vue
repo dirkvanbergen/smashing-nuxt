@@ -4,7 +4,7 @@
       src="@/static/images/smashing-foto-1.jpg"
       class="-mt-8 w-full h-32 md:h-48 lg:h-64 object-cover object-center mb-4"
     >
-    <ul v-if="news" class="px-2 lg:px-0 mb-4">
+    <ul v-if="news" class="px-6 lg:px-0 mb-4">
       <li v-for="(post, index) in news" :key="index" class="pb-4">
         <h2
           class="text-xl text-bold mb-1 border-smashing border-b text-smashing"

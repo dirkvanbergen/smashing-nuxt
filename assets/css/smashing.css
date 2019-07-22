@@ -3,4 +3,9 @@ body {
     display: flex;
     height: 100%;
     flex-direction: column;
+    overflow-x: hidden;
+}
+
+body.modal-open {
+    overflow-y: hidden;
 }
