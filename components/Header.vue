@@ -12,7 +12,7 @@
             class="fill-current h-8 w-8 mr-2"
             width="54"
             height="54"
-          >
+          />
           <span class="font-bold text-3xl tracking-tight">Smashing'72</span>
         </nuxt-link>
         <div class="block lg:hidden">
@@ -26,7 +26,7 @@
               xmlns="http://www.w3.org/2000/svg"
             >
               <title>Menu</title>
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
           </button>
         </div>
@@ -35,8 +35,11 @@
           <HeaderButtons />
         </div>
       </div>
-      <div class="nav-mobile absolute bg-smashing left-0 right-0 px-6 h-0 overflow-hidden" ref="nav-mobile" :class="{'h-auto p-6': menuOpened}">
-        <div class="container mx-auto">
+      <div
+        class="nav-mobile absolute bg-smashing left-0 right-0 px-6 h-0 overflow-hidden"
+        ref="navMobile"
+      >
+        <div class="container mx-auto pb-6">
           <MenuItems @menu-click="openMenu" />
           <HeaderButtons @menu-click="openMenu" />
         </div>
@@ -46,10 +49,13 @@
 </template>
 
 <script>
-import MenuItems from '@/components/MenuItems'
-import HeaderButtons from '@/components/HeaderButtons'
+import MenuItems from "@/components/MenuItems";
+import HeaderButtons from "@/components/HeaderButtons";
+
+import {TweenLite, TimelineLite} from "gsap";
+
 export default {
-  components: {MenuItems, HeaderButtons},
+  components: { MenuItems, HeaderButtons },
   data() {
     return {
       menuOpened: false
@@ -58,11 +64,18 @@ export default {
   methods: {
     openMenu() {
       this.menuOpened = !this.menuOpened;
-      if (this.menuOpened)
-      {
-        document.querySelector('body').classList = "modal-open";
+      var { navMobile } = this.$refs;
+      if (this.menuOpened) {
+        document.querySelector("body").classList = "modal-open";
+
+        var tl = new TimelineLite();
+
+        TweenLite.set(navMobile, { height: "auto" });
+        TweenLite.from(navMobile, 0.2, { height: "0" }, Power3.EaseInOut);
       } else {
-        document.querySelector('body').classList = "";  
+        document.querySelector("body").classList = "";
+
+        TweenLite.to(navMobile, .2, { height: "0" }, Power3.EaseInOut);
       }
     }
   }
