@@ -5,7 +5,6 @@ body {
     flex-direction: column;
     overflow-x: hidden;
 }
-/* 
-body.modal-open {
-    overflow-y: hidden;
-} */
+.main-content a {
+    text-decoration: underline;
+}
