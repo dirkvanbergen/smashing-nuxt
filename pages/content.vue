@@ -4,7 +4,7 @@
     <article class="order-1 md:order-2 mx-4 md:mx-0 md:pl-8 md:w-2/3 lg:w-3/4">
       <div v-if="!isLoading && !isNotFound">
         <h1 class="text-2xl text-semibold mb-1">{{currentPage.fields.title}}</h1>
-        <p>{{currentPage.fields.content}}</p>
+        <p v-html="$md.render(currentPage.fields.content)"></p>
       </div>
       <div v-else-if="isLoading">...</div>
       <div v-else>Not Found</div>
