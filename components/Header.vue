@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-8 shadow bg-smashing w-screen z-10" :class="{'fixed h-screen': menuOpened}">
+  <div class="mb-8 shadow bg-smashing w-screen z-10">
     <nav class="p-6">
       <div class="container mx-auto flex items-center justify-between flex-wrap relative">
         <nuxt-link
@@ -30,40 +30,15 @@
             </svg>
           </button>
         </div>
-        <div
-          class="w-full block flex-grow lg:flex lg:items-center lg:w-auto"
-          :class="{'hidden': !menuOpened}"
-        >
-          <div class="text-sm lg:flex-grow">
-            <nuxt-link
-              :to="{name:'index'}"
-              class="text-xl block mt-4 lg:inline-block lg:mt-0 text-white font-semibold hover:underline mr-4"
-              @click.native="menuOpened=false"
-            >Home</nuxt-link>
-            <nuxt-link
-              :to="{name:'teams'}"
-              class="text-xl block mt-4 lg:inline-block lg:mt-0 text-white font-semibold hover:underline mr-4"
-              @click.native="menuOpened=false"
-            >Teams</nuxt-link>
-            <nuxt-link
-              :key="index"
-              v-for="(item, index) in items"
-              :to="{name:'custom', params: {item: item.fields.slug, page: getPages(item)[0].fields.slug}}"
-              class="block mt-4 text-xl lg:inline-block lg:mt-0 text-white font-semibold hover:underline mr-4"
-              @click.native="menuOpened=false"
-            >{{item.fields.title}}</nuxt-link>
-          </div>
-          <div>
-            <nuxt-link
-              :to="{name:'lid-worden'}"
-              @click.native="menuOpened=false"
-              class="inline-block text-lg px-4 py-2 leading-none border-2 rounded text-white border-white hover:border-transparent hover:text-smashing hover:bg-white mt-4 lg:mt-0"
-            >Lid worden</nuxt-link>
-            <a href="https://smashingdiemen.teaco.nl/"
-              @click.native="menuOpened=false" 
-              target="_blank" 
-              class="inline-block text-lg px-4 py-2 leading-none border-2 rounded text-white border-white hover:border-transparent hover:text-smashing hover:bg-white mt-4 lg:mt-0">Kleding Webshop</a>
-          </div>
+        <div class="w-full block flex-grow hidden lg:flex lg:items-center lg:w-auto">
+          <MenuItems />
+          <HeaderButtons />
+        </div>
+      </div>
+      <div class="nav-mobile absolute bg-smashing left-0 right-0 px-6 h-0 overflow-hidden" ref="nav-mobile" :class="{'h-auto p-6': menuOpened}">
+        <div class="container mx-auto">
+          <MenuItems @menu-click="openMenu" />
+          <HeaderButtons @menu-click="openMenu" />
         </div>
       </div>
     </nav>
@@ -71,20 +46,16 @@
 </template>
 
 <script>
+import MenuItems from '@/components/MenuItems'
+import HeaderButtons from '@/components/HeaderButtons'
 export default {
+  components: {MenuItems, HeaderButtons},
   data() {
     return {
       menuOpened: false
     };
   },
   methods: {
-    getPages(menuItem) {
-      var pages = this.pages.filter(
-        page => page.fields.parent.sys.id === menuItem.sys.id
-      );
-      pages.sort((a, b) => a.fields.order - b.fields.order);
-      return pages;
-    },
     openMenu() {
       this.menuOpened = !this.menuOpened;
       if (this.menuOpened)
@@ -93,28 +64,6 @@ export default {
       } else {
         document.querySelector('body').classList = "";  
       }
-    }
-  },
-  computed: {
-    teams() {
-      return this.$store.state.teams.teams;
-    },
-    pages() {
-      return this.$store.state.pages.headers;
-    },
-    items() {
-      const reducer = (acc, val) => {
-        if (
-          acc.filter(item => item.sys.id === val.fields.parent.sys.id)
-            .length === 0
-        ) {
-          acc.push(val.fields.parent);
-        }
-        return acc;
-      };
-      var items = this.pages.reduce(reducer, []);
-      items.sort((a, b) => a.fields.order - b.fields.order);
-      return items;
     }
   }
 };
