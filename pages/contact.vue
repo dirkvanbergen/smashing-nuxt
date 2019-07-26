@@ -1,5 +1,5 @@
 <template>
-  <div class="w-1/2 mx-auto">
+  <div class="lg:w-1/2  mx-6 lg:mx-auto">
     <h1 class="text-smashing text-2xl text-bold">Contact</h1>
     <p>Heb je een vraag, of een opmerking? Of wil je gewoon wat kwijt aan de vereniging? Laat het ons hier weten!</p>
     <form class="mt-4" name="contact" method="POST" action="/bedankt" netlify netlify-honeypot="bot-field" >

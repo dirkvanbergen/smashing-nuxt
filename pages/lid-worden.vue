@@ -1,5 +1,5 @@
 <template>
-  <div class="w-1/2 mx-auto">
+  <div class="lg:w-1/2 mx-6 lg:mx-auto">
     <h1 class="text-smashing text-2xl text-bold">Lid worden</h1>
     <p>
       Bij Smashing '72 kun je 3 keer gratis op proef komen meetrainen voordat je gevraagd wordt te kiezen voor wel of niet lid worden. 
