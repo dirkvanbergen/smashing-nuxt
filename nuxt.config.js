@@ -91,7 +91,7 @@ module.exports = {
 
       const menuRoutes = client.getEntries({
         content_type: 'menuItem',
-      }).ten((response) => {
+      }).then((response) => {
         return response.items.map(entry => {
           return {
             route: `/${entry.fields.slug}`,
