@@ -4,7 +4,7 @@
     <article class="order-1 md:order-2 mx-4 md:mx-0 md:pl-8 md:w-2/3 lg:w-3/4">
       <div v-if="!isLoading && !isNotFound">
         <h1 class="text-2xl text-semibold mb-1">{{currentPage.fields.title}}</h1>
-        <p v-html="$md.render(currentPage.fields.content)"></p>
+        <p class="md-content" v-html="$md.render(currentPage.fields.content)"></p>
       </div>
       <div v-else-if="isLoading">...</div>
       <div v-else>Not Found</div>
@@ -28,10 +28,16 @@ export default {
     }
   },
   async fetch({ store, params }) {
-    await store.dispatch("page/getPageBySlug", {
-      item: params.item,
-      slug: params.page
-    });
+    if (params.page) {
+      await store.dispatch("page/getPageBySlug", {
+        item: params.item,
+        slug: params.page
+      });
+    } else {
+      await store.dispatch("page/getFirstPageFromParent", {
+        item: params.item
+      })
+    }
 
     await store.dispatch("pages/getPageHeaders");
   }

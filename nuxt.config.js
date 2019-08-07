@@ -34,7 +34,7 @@ module.exports = {
     extendRoutes (routes, resolve) {
       routes.push({
         name: 'custom',
-        path: '/:item/:page',
+        path: '/:item/:page?',
         component: resolve(__dirname, 'pages/content.vue')
       })
     }
@@ -88,9 +88,20 @@ module.exports = {
               };
           });
       });
+
+      const menuRoutes = client.getEntries({
+        content_type: 'menuItem',
+      }).ten((response) => {
+        return response.items.map(entry => {
+          return {
+            route: `/${entry.fields.slug}`,
+            payload: entry
+          }
+        })
+      })
       
-      return Promise.all([teamRoutes, pageRoutes]).then((routes) => {
-        return routes[0].concat(routes[1])
+      return Promise.all([teamRoutes, menuRoutes, pageRoutes]).then((routes) => {
+        return routes[0].concat(routes[1]).concat(routes[2]);
       })
     },
   }

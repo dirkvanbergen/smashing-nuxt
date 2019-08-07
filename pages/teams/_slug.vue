@@ -13,7 +13,7 @@
         <div>Trainingstijden:</div>
         <div v-for="(t, index) in currentTeam.fields.trainingstijden" :key="index" class="ml-4">{{t}}</div>
       </div>
-      <p class="extra-text mt-2" v-if="currentTeam.fields.extraText" v-html="$md.render(currentTeam.fields.extraText)"></p>
+      <p class="extra-text mt-2 md-content" v-if="currentTeam.fields.extraText" v-html="$md.render(currentTeam.fields.extraText)"></p>
     </div>
   </div>
 </template>

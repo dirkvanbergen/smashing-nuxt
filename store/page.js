@@ -19,6 +19,27 @@ export const mutations = {
 }
 
 export const actions = {
+  async getFirstPageFromParent({ commit }, { item }) {
+    commit("setLoading", true)
+    console.log("getFirstPageFromParent")
+    const response = await client.getEntries({
+      content_type: "page",
+      order: "fields.order"
+    })
+    let result = response.items.filter(
+      page =>
+        page.fields.parent.fields.slug === item
+    )
+    console.table(result)
+    if (result.length == 0) {
+      commit("setCurrentPage", null)
+      commit("setNotFound", true)
+    } else {
+      commit("setCurrentPage", result[0])
+      commit("setNotFound", false)
+    }
+    commit("setLoading", false)
+  },
   async getPageBySlug({ commit }, { item, slug }) {
     commit("setLoading", true)
     const response = await client.getEntries({

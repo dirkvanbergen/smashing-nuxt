@@ -5,6 +5,6 @@ body {
     flex-direction: column;
     overflow-x: hidden;
 }
-.main-content a {
+.md-content a {
     text-decoration: underline;
 }
