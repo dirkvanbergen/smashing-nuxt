@@ -1,7 +1,7 @@
 <template>
   <div class="mb-8 shadow bg-smashing w-screen z-10">
     <nav class="p-6">
-      <div class="container mx-auto flex items-center justify-between flex-wrap relative">
+      <div class="container mx-auto flex flex-wrap items-center justify-between flex-wrap relative">
         <nuxt-link
           :to="{name:'index'}"
           class="flex items-center flex-shrink-0 text-white mr-2 md:mr-6"
@@ -15,7 +15,7 @@
           />
           <span class="font-bold text-3xl tracking-tight">Smashing'72</span>
         </nuxt-link>
-        <div class="block lg:hidden">
+        <div class="block lg:hidden w-full">
           <button
             class="flex items-center px-3 py-2 border rounded border-2 text-white border-white"
             @click="openMenu"
