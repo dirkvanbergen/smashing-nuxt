@@ -8,14 +8,19 @@
       </div>
       <div v-else-if="isLoading">...</div>
       <div v-else>Not Found</div>
+
+      <TeamsOverview v-if="currentPage.fields.slug === 'teams'" />
+      <JeugdOverview v-if="currentPage.fields.slug === 'jeugd-teams'" />
     </article>
   </div>
 </template>
 
 <script>
 import ContentSideMenu from "@/components/ContentSideMenu";
+import TeamsOverview from "@/components/TeamsOverview";
+import JeugdOverview from "@/components/JeugdOverview";
 export default {
-  components: { ContentSideMenu },
+  components: { ContentSideMenu, TeamsOverview, JeugdOverview },
   computed: {
     currentPage() {
       return this.$store.state.page.currentPage;
@@ -33,6 +38,9 @@ export default {
         item: params.item,
         slug: params.page
       });
+      if (params.page==='teams' || params.page==='jeugd-teams') {        
+        await store.dispatch("teams/getTeams");
+      }
     } else {
       await store.dispatch("page/getFirstPageFromParent", {
         item: params.item

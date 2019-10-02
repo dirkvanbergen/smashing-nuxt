@@ -6,11 +6,6 @@
         @click.native="menuClick"
       >Home</nuxt-link>
       <nuxt-link
-        :to="{name:'teams'}"
-        class="text-xl block mt-4 lg:inline-block lg:mt-0 text-white font-semibold hover:underline mr-4"
-        @click.native="menuClick"
-      >Teams</nuxt-link>
-      <nuxt-link
         :key="index"
         v-for="(item, index) in items"
         :to="{name:'custom', params: {item: item.fields.slug}}"

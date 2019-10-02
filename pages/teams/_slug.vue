@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row flex-wrap items-start">
-    <TeamsSideMenu class="order-2 md:order-1 mt-4 md:mt-0 w-full mx-4 md:mx-0 md:w-1/4 lg:w-1/6"/>
+    <ContentSideMenu class="order-2 md:order-1 mt-4 md:mt-0 w-full mx-4 md:mx-0 md:w-1/3 lg:w-1/4"/>
     <div class="order-1 md:order-2 mx-4 md:mx-0 md:pl-8 md:w-2/3 lg:w-3/4">
       <h1 class="text-2xl text-semibold mb-1">{{currentTeam.fields.title}}</h1>
       <h3 v-if="currentTeam.fields.level">{{currentTeam.fields.level}}</h3>
@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import TeamsSideMenu from "@/components/TeamsSideMenu";
+import ContentSideMenu from "@/components/ContentSideMenu";
 export default {
-  components: { TeamsSideMenu },
+  components: { ContentSideMenu },
   computed: {
     currentTeam() {
       return this.$store.state.team.currentTeam;
