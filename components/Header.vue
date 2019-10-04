@@ -15,9 +15,9 @@
           />
           <span class="font-bold text-3xl tracking-tight">Smashing'72</span>
         </nuxt-link>
-        <div class="block lg:hidden w-full">
+        <div class="block lg:hidden">
           <button
-            class="flex items-center px-3 py-2 border rounded border-2 text-white border-white"
+            class="flex items-center px-3 py-2 rounded border-2 text-white border-white"
             @click="openMenu"
           >
             <svg
@@ -30,7 +30,7 @@
             </svg>
           </button>
         </div>
-        <div class="w-full block flex-grow hidden lg:flex lg:items-center lg:w-auto">
+        <div class="block flex-grow hidden lg:flex lg:items-center lg:w-full">
           <MenuItems />
           <HeaderButtons />
         </div>
