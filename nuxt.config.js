@@ -2,6 +2,7 @@ require('dotenv').config()
 const contentful = require('contentful')
 
 module.exports = {  
+  plugins: ['~/plugins/vue-scroll'],
   modules: ['@nuxtjs/dotenv', '@nuxtjs/markdownit', '~modules/blacklist-routes.js'],
   devModules: ['@nuxtjs/tailwindcss'],
   /*
