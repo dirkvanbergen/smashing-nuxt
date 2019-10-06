@@ -30,12 +30,12 @@
             </svg>
           </a>
         </div>        
-        <div class="nav-mobile lg:hidden fixed right-0 w-0 h-0 opacity-0 bg-smashing"
+        <div class="nav-mobile px-6 lg:hidden fixed right-0 w-0 h-0 opacity-0 bg-smashing"
           :class="{'w-screen h-screen opacity-100': menuOpened}"
           ref="navMobile">
           <div class="container mx-auto pb-6">
-            <MenuItems @menu-click="openMenu" menu-type="mobile" />
-            <HeaderButtons @menu-click="openMenu" />
+            <MenuItems @menu-click="closeMenu" menu-type="mobile" />
+            <HeaderButtons @menu-click="closeMenu" />
           </div>
         </div>
         <div class="block flex-grow hidden lg:flex lg:items-center lg:w-full">
