@@ -16,7 +16,9 @@ export default {
   }
 };
 </script>
+<style scoped lang="scss">
+
 .header-button {
   transition: all 0.2s ease-in-out;
 }
-<style scoped>
+</style>

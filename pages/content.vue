@@ -9,8 +9,8 @@
       <div v-else-if="isLoading">...</div>
       <div v-else>Not Found</div>
 
-      <TeamsOverview v-if="currentPage.fields.slug === 'teams'" />
-      <JeugdOverview v-if="currentPage.fields.slug === 'jeugd-teams'" />
+      <TeamsOverview v-if="currentPage.fields.slug === 'teams'" :teams="teams" />
+      <TeamsOverview v-if="currentPage.fields.slug === 'jeugd-teams'" :teams="teams" />
     </article>
   </div>
 </template>
@@ -18,10 +18,12 @@
 <script>
 import ContentSideMenu from "@/components/ContentSideMenu";
 import TeamsOverview from "@/components/TeamsOverview";
-import JeugdOverview from "@/components/JeugdOverview";
 export default {
-  components: { ContentSideMenu, TeamsOverview, JeugdOverview },
+  components: { ContentSideMenu, TeamsOverview },
   computed: {
+    isJeugdOverview(){
+      return this.currentPage.fields.slug === 'jeugd-teams';
+    },
     currentPage() {
       return this.$store.state.page.currentPage;
     },
@@ -30,6 +32,9 @@ export default {
     },
     isNotFound() {
       return this.$store.state.page.isNotFound;
+    },
+    teams() {
+      return this.$store.state.teams.teams.filter(t => t.fields.isJeugdTeam === this.isJeugdOverview || (!t.fields.isJeugdTeam && !this.isJeugdOverview));
     }
   },
   async fetch({ store, params }) {
@@ -37,16 +42,14 @@ export default {
       await store.dispatch("page/getPageBySlug", {
         item: params.item,
         slug: params.page
-      });
-      if (params.page==='teams' || params.page==='jeugd-teams') {        
-        await store.dispatch("teams/getTeams");
-      }
+      });     
     } else {
       await store.dispatch("page/getFirstPageFromParent", {
         item: params.item
       })
     }
 
+    await store.dispatch("teams/getTeams");
     await store.dispatch("pages/getPageHeaders");
   }
 };
