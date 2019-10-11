@@ -9,9 +9,9 @@ module.exports = {
     extend: {
       colors: {
         'smashing': {
-          lighter: '#fe8888',
-          default: '#fe0000',
-          dark: '#b00',
+          lighter: '#b88',
+          default: '#b00',
+          dark: '#900',
         },
       }
     }

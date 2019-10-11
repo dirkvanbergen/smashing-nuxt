@@ -38,7 +38,7 @@
             <HeaderButtons @menu-click="closeMenu" />
           </div>
         </div>
-        <div class="block flex-grow hidden lg:flex lg:items-center lg:w-full">
+        <div class="block flex-grow hidden lg:flex lg:items-stretch lg:w-full">
           <MenuItems />
           <HeaderButtons />
         </div>
