@@ -14,7 +14,7 @@
       >{{item.fields.title}}</div>
       <ul class="bg-smashing px-4 py-2 -mr-4 lg:shadow lg:absolute hidden lg:block">
         <li v-for="(subItem, subIndex) in getPages(item)" :key="subIndex">
-          <nuxt-link :to="{name:'custom', params: {page: subItem.fields.slug, item: item.fields.slug}}"
+          <nuxt-link :to="{name:'custom', params: {page: subItem.fields.slug, item: item.fields.slug}}" @click.native="menuClick"
         class="block py-2 text-xl text-white font-semibold hover:underline whitespace-no-wrap">{{subItem.fields.title}}</nuxt-link></li>
       </ul>
       </div>
