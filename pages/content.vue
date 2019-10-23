@@ -4,11 +4,12 @@
     <article class="order-1 md:order-2 mx-4 md:mx-0 md:pl-8 md:w-2/3 lg:w-3/4">
       <div v-if="!isLoading && !isNotFound">
         <h1 class="text-2xl text-semibold mb-1">{{currentPage.fields.title}}</h1>
-        <p class="md-content" v-html="$md.render(currentPage.fields.content)"></p>
+        <p class="md-content" v-html="$md.render(currentPage.fields.content || '')"></p>
       </div>
       <div v-else-if="isLoading">...</div>
       <div v-else>Not Found</div>
 
+      <CommitteeOverview v-if="currentPage.fields.slug === 'commissies'"/>
       <TeamsOverview v-if="currentPage.fields.slug === 'teams'" :teams="teams" />
       <TeamsOverview v-if="currentPage.fields.slug === 'jeugd-teams'" :teams="teams" />
     </article>
@@ -18,8 +19,9 @@
 <script>
 import ContentSideMenu from "@/components/ContentSideMenu";
 import TeamsOverview from "@/components/TeamsOverview";
+import CommitteeOverview from "@/components/CommitteeOverview";
 export default {
-  components: { ContentSideMenu, TeamsOverview },
+  components: { ContentSideMenu, TeamsOverview, CommitteeOverview },
   computed: {
     isJeugdOverview(){
       return this.currentPage.fields.slug === 'jeugd-teams';

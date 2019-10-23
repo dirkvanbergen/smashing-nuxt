@@ -5,6 +5,21 @@
     <form class="mt-4" name="contact" method="POST" action="/bedankt" netlify netlify-honeypot="bot-field" >
       <p class="py-1">
         <label class="flex flex-col md:flex md:flex-row justify-between md:items-center" for="naam">
+          <span>Dit bericht is voor de</span>
+          <select v-model="$route.params.to"
+            class="w-full md:w-3/4 border-gray-500 focus:shadow border p-1 rounded"
+            name="recepient">
+          <option value="anyone" selected="selected">Maakt niet uit</option>
+          <option value="voorzitter">Voorzitter</option>
+          <option value="penningmeester">Penningmeester</option>
+          <option value="jeugd-tc">Jeugdcommissie</option>
+          <option value="senioren-tc">Seniorencommissie</option>
+          <option value="senioren-tc">Seniorencommissie</option>
+          </select>
+        </label>
+      </p>
+      <p class="py-1">
+        <label class="flex flex-col md:flex md:flex-row justify-between md:items-center" for="naam">
           <span>Naam</span>
           <input
             class="w-full md:w-3/4 border-gray-500 focus:shadow border p-1 rounded"
@@ -45,6 +60,11 @@
 
 <script>
 export default {
+  methods: {
+    logRoute() {
+      console.log(this.$route);
+    }
+  },
   async fetch({ store, params }) {
     await store.dispatch("pages/getPageHeaders");
   }
