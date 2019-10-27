@@ -9,12 +9,12 @@
           <select v-model="$route.params.to"
             class="w-full md:w-3/4 border-gray-500 focus:shadow border p-1 rounded"
             name="recepient">
-          <option value="anyone" selected="selected">Maakt niet uit</option>
+          <option value="algemeen" selected="selected">Algemeen</option>
           <option value="voorzitter">De voorzitter</option>
           <option value="penningmeester">De penningmeester</option>
           <option value="jeugd-tc">De jeugdcommissie</option>
           <option value="senioren-tc">De seniorencommissie</option>
-          <option value="secretary">Het wedstrijdsecretariaat</option>
+          <option value="secretaris">Het wedstrijdsecretariaat</option>
           <option value="webeditors">De (web)redactie</option>
           <option value="bestuur">Het bestuur</option>
           </select>
