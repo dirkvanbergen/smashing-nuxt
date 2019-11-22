@@ -4,7 +4,7 @@
     <article class="order-1 md:order-2 mx-4 md:mx-0 md:pl-8 md:w-2/3 lg:w-3/4">
       <div v-if="!isLoading && !isNotFound">
         <h1 class="text-2xl text-semibold mb-1">{{currentPage.fields.title}}</h1>
-        <p class="md-content" v-html="$md.render(currentPage.fields.content || '')"></p>
+        <p class="md-content" v-html="documentToHtmlString(currentPage.fields.text)"></p>
       </div>
       <div v-else-if="isLoading">...</div>
       <div v-else>Not Found</div>
@@ -20,8 +20,14 @@
 import ContentSideMenu from "@/components/ContentSideMenu";
 import TeamsOverview from "@/components/TeamsOverview";
 import CommitteeOverview from "@/components/CommitteeOverview";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 export default {
   components: { ContentSideMenu, TeamsOverview, CommitteeOverview },
+  methods: {
+    documentToHtmlString(text) {
+      return documentToHtmlString(text);
+    }
+  },
   computed: {
     isJeugdOverview(){
       return this.currentPage.fields.slug === 'jeugd-teams';

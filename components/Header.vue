@@ -35,12 +35,12 @@
           ref="navMobile">
           <div class="container mx-auto pb-6">
             <MenuItems @menu-click="closeMenu" menu-type="mobile" />
-            <HeaderButtons @menu-click="closeMenu" />
+            <!-- <HeaderButtons @menu-click="closeMenu" /> -->
           </div>
         </div>
         <div class="block flex-grow hidden lg:flex lg:items-stretch lg:w-full">
           <MenuItems />
-          <HeaderButtons />
+          <!-- <HeaderButtons /> -->
         </div>
       </div>
     </nav>
