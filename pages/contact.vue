@@ -3,6 +3,7 @@
     <h1 class="text-smashing text-2xl text-bold">Contact</h1>
     <p>Heb je een vraag, of een opmerking? Of wil je gewoon wat kwijt aan de vereniging? Laat het ons hier weten!</p>
     <form class="mt-4" name="contact" method="POST" action="/bedankt" netlify netlify-honeypot="bot-field" >
+    <input type="hidden" name="form-name" value="contact">
       <p class="py-1">
         <label class="flex flex-col md:flex md:flex-row justify-between md:items-center" for="naam">
           <span>Aan</span>
