@@ -1,6 +1,6 @@
 <template>
   <div class="py-4">
-    Download <a class="text-smashing underline hover:underline" href="'/documents/inschrijfformulier.docx'" target="_blank">hier</a> het inschrijfformulier (pdf).
+    Download <a class="text-smashing underline hover:underline" href="/documents/inschrijfformulier.docx" target="_blank">hier</a> het inschrijfformulier (pdf).
   </div>
 </template>
 
