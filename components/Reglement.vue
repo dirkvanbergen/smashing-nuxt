@@ -1,6 +1,6 @@
 <template>
   <div class="pb-4">
-    Download <a href="~static/documenten/regels.pdf">hier</a> het volledige document (pdf).
+    Download <a href="/documents/regels.pdf">hier</a> het volledige document (pdf).
   </div>
 </template>
 
