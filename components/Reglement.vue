@@ -1,6 +1,6 @@
 <template>
   <div class="pb-4">
-    Download <a href="/documents/regels.pdf">hier</a> het volledige document (pdf).
+    Download <a  class="text-smashing underline hover:underline" href="/documents/regels.pdf" target="_blank">hier</a> het volledige Huishoudelijke Reglement (pdf).
   </div>
 </template>
 

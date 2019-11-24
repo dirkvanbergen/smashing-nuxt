@@ -1,6 +1,6 @@
 <template>
-  <div class="pb-4">
-    Download <nuxt-link :to="'/documents/inschrijfformulier.docx'">hier</nuxt-link> het volledige document (pdf).
+  <div class="py-4">
+    Download <a class="text-smashing underline hover:underline" href="'/documents/inschrijfformulier.docx'" target="_blank">hier</a> het inschrijfformulier (pdf).
   </div>
 </template>
 
@@ -10,6 +10,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 </style>
 
 
