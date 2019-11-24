@@ -1,6 +1,6 @@
 <template>
   <div class="pb-4">
-    Download <nuxt-link :to="'~static/documenten/inschrijfformulier.docx'">hier</nuxt-link> het volledige document (pdf).
+    Download <nuxt-link :to="'/documents/inschrijfformulier.docx'">hier</nuxt-link> het volledige document (pdf).
   </div>
 </template>
 
