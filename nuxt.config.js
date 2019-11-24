@@ -44,6 +44,16 @@ module.exports = {
       })
     }
   },
+  loaders: [
+    {
+      test: /\.(pdf|doc|docx)$/,
+      loader: 'url-loader',
+      query: {
+        limit: 1000, // 1kB
+        name: 'doc/[name].[hash:7].[ext]'
+      }
+    }
+  ],
   /*
   ** Build configuration
   */

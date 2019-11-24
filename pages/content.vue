@@ -4,6 +4,8 @@
     <article class="order-1 md:order-2 mx-4 md:mx-0 md:pl-8 md:w-2/3 lg:w-3/4">
       <div v-if="!isLoading && !isNotFound">
         <h1 class="text-2xl text-semibold mb-1">{{currentPage.fields.title}}</h1>
+        <Reglement v-if="currentPage.fields.slug === 'huishoudelijk-reglement'" />
+        <Statuten v-if="currentPage.fields.slug === 'statuten'" />
         <p class="md-content" v-html="documentToHtmlString(currentPage.fields.text)"></p>
       </div>
       <div v-else-if="isLoading">...</div>
@@ -12,6 +14,8 @@
       <CommitteeOverview v-if="currentPage.fields.slug === 'commissies'"/>
       <TeamsOverview v-if="currentPage.fields.slug === 'teams'" :teams="teams" />
       <TeamsOverview v-if="currentPage.fields.slug === 'jeugd-teams'" :teams="teams" />
+      <TrainingSchedule v-if="currentPage.fields.slug === 'trainingsschema'" />
+      <Inschrijfformulier v-if="currentPage.fields.slug === 'inschrijfformulier'" />
     </article>
   </div>
 </template>
@@ -20,9 +24,13 @@
 import ContentSideMenu from "@/components/ContentSideMenu";
 import TeamsOverview from "@/components/TeamsOverview";
 import CommitteeOverview from "@/components/CommitteeOverview";
+import TrainingSchedule from "@/components/TrainingSchedule";
+import Statuten from "@/components/Statuten";
+import Reglement from "@/components/Reglement";
+import Inschrijfformulier from "@/components/Inschrijfformulier";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 export default {
-  components: { ContentSideMenu, TeamsOverview, CommitteeOverview },
+  components: { ContentSideMenu, TeamsOverview, CommitteeOverview, TrainingSchedule, Statuten, Reglement, Inschrijfformulier },
   methods: {
     documentToHtmlString(text) {
       return documentToHtmlString(text);
