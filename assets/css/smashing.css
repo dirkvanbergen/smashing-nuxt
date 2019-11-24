@@ -10,3 +10,8 @@ body {
 .md-content a {
     text-decoration: underline;
 }
+
+.md-content p {
+    padding: 1em 0;
+    white-space: pre-line;
+}
