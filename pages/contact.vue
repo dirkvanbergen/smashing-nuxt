@@ -2,12 +2,12 @@
   <div class="lg:w-1/2  mx-6 lg:mx-auto">
     <h1 class="text-smashing text-2xl text-bold">Contact</h1>
     <p>Heb je een vraag, of een opmerking? Of wil je gewoon wat kwijt aan de vereniging? Laat het ons hier weten!</p>
-    <form class="mt-4" name="contact" method="POST" action="/bedankt" netlify netlify-honeypot="bot-field" >
-    <input type="hidden" name="form-name" value="contact">
+    <form class="mt-4" :name="formName" method="POST" action="/bedankt" netlify netlify-honeypot="bot-field" >
+    <input type="hidden" name="form-name" :value="formName">
       <p class="py-1">
         <label class="flex flex-col md:flex md:flex-row justify-between md:items-center" for="naam">
           <span>Aan</span>
-          <select v-model="$route.params.to"
+          <select v-model="recepient"
             class="w-full md:w-3/4 border-gray-500 focus:shadow border p-1 rounded"
             name="recepient">
           <option value="algemeen" selected="selected">Algemeen</option>
@@ -68,8 +68,18 @@ export default {
       console.log(this.$route);
     }
   },
+  computed: {
+    formName() {
+      return `contact-${this.recepient}`;
+    }
+  },
   async fetch({ store, params }) {
-    await store.dispatch("pages/getPageHeaders");
+    await store.dispatch("pages/getPageHeaders");    
+  },
+  asyncData ({params}) {
+    return {
+      recepient: params.to || 'algemeen'
+    }
   }
 };
 </script>
