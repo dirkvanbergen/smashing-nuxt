@@ -14,7 +14,7 @@
       <CommitteeOverview v-if="currentPage.fields.slug === 'commissies'"/>
       <TeamsOverview v-if="currentPage.fields.slug === 'teams'" :teams="teams" />
       <TeamsOverview v-if="currentPage.fields.slug === 'jeugd-teams'" :teams="teams" />
-      <TrainingSchedule v-if="currentPage.fields.slug === 'trainingsschema'" />
+      <TrainingSchedule v-if="currentPage.fields.slug === 'trainingsschema' || currentPage.fields.slug === 'trainingsschema-jeugd'" />
       <Inschrijfformulier v-if="appendSignUpForm" />
     </article>
   </div>
