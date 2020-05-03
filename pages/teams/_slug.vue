@@ -14,12 +14,13 @@
         <div>Trainingstijden:</div>
         <div v-for="(t, index) in currentTeam.fields.trainingstijden" :key="index" class="ml-4">{{t}}</div>
       </div>
-      <p class="extra-text mt-2 md-content" v-if="currentTeam.fields.extraText" v-html="$md.render(currentTeam.fields.extraText)"></p>
+      <!-- <div class="extra-text mt-2 md-content" v-html="documentToHtmlString(currentTeam.fields.extraText)"></div> -->
     </div>
   </div>
 </template>
 
 <script>
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import ContentSideMenu from "@/components/ContentSideMenu";
 export default {
   components: { ContentSideMenu },
@@ -29,10 +30,26 @@ export default {
     },
     isLoading() {
       return this.$store.state.team.isLoading;
+    },
+    documentToHtmlString(doc) {
+      return documentToHtmlString(doc);
     }
   },
   async fetch({ store, params }) {
     await store.dispatch("team/getTeamBySlug", params.slug);
+
+    let item, page;
+    if (store.state.team.currentTeam.fields.isJeugdTeam) {
+      item = "jeugd";
+      page = "jeugd-teams";
+    } else {
+      item = "senioren";
+      page = "teams";
+    }
+    await store.dispatch("page/getPageBySlug", {
+      item: item,
+      slug: page
+    });
 
     await store.dispatch("teams/getTeams");
     await store.dispatch("pages/getPageHeaders");
