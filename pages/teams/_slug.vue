@@ -17,7 +17,10 @@
         </div>
         <div class="extra-text mt-2 md-content" v-html="documentToHtmlString(currentTeam.fields.extraText)"></div>
       </div>
-      <div class="photo w-full lg:w-1/3" v-if="currentTeam.fields.teamFoto">
+      <div class="ranking w-full lg:w-1/3">
+
+      </div>
+      <div class="photo w-full mx-8" v-if="currentTeam.fields.teamFoto">
         <img :alt="currentTeam.fields.teamFoto.fields.title" :src="currentTeam.fields.teamFoto.fields.file.url" />
       </div>
     </div>
