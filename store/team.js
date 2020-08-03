@@ -11,6 +11,12 @@ export const mutations = {
   },
   setLoading(state, payload) {
     state.isLoading = payload
+  },
+  setRanking(state, payload) {
+    state.ranking = payload
+  },
+  clearRanking(state) {
+    state.ranking = null;
   }
 }
 
@@ -23,5 +29,13 @@ export const actions = {
     })
     commit("setCurrentTeam", response.items[0])
     commit("setLoading", false)
-  }
+  },
+  async getRanking({commit}, pouleCode) {
+    const ranking = await this.$axios.$get(`https://nevobostanden20200622101750.azurewebsites.net/api/GetRanking?code=s4UgnF03If4FA/9szhGxnLT4Xa/mcUrAXUP5FqVrgahJmcIevCa/nA==&poule=${pouleCode}`)
+    commit("setRanking", ranking)
+  },
+  async clearRanking({commit}) {
+    commit("clearRanking")
+  },
+
 }

@@ -18,7 +18,9 @@
         <div class="extra-text mt-2 md-content" v-html="documentToHtmlString(currentTeam.fields.extraText)"></div>
       </div>
       <div class="ranking w-full lg:w-1/3">
-
+        <div class="rank" :key="index" v-for="(rank, index) in ranking">
+          {{rank.team.name}}
+        </div>
       </div>
       <div class="photo w-full mx-8" v-if="currentTeam.fields.teamFoto">
         <img :alt="currentTeam.fields.teamFoto.fields.title" :src="currentTeam.fields.teamFoto.fields.file.url" />
@@ -41,6 +43,9 @@ export default {
     currentTeam() {
       return this.$store.state.team.currentTeam;
     },
+    ranking() {
+      return this.$store.state.team.ranking;
+    },
     isLoading() {
       return this.$store.state.team.isLoading;
     }
@@ -60,6 +65,12 @@ export default {
       item: item,
       slug: page
     });
+
+    if (store.state.team.currentTeam.fields.pouleCode) {
+      await store.dispatch("team/getRanking", store.state.team.currentTeam.fields.pouleCode);
+    } else {
+      await store.dispatch("team/clearRanking");
+    }
 
     await store.dispatch("teams/getTeams");
     await store.dispatch("pages/getPageHeaders");

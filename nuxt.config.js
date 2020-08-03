@@ -1,9 +1,9 @@
 require('dotenv').config()
 const contentful = require('contentful')
 
-module.exports = {  
+module.exports = {
   plugins: ['~/plugins/fontawesome'],
-  modules: ['@nuxtjs/dotenv', '@nuxtjs/markdownit', '~modules/blacklist-routes.js'],
+  modules: ['@nuxtjs/dotenv', '@nuxtjs/markdownit', '@nuxtjs/axios', '~modules/blacklist-routes.js'],
   devModules: ['@nuxtjs/tailwindcss'],
   /*
   ** Headers of the page
@@ -114,7 +114,7 @@ module.exports = {
           }
         })
       })
-      
+
       return Promise.all([teamRoutes, menuRoutes, pageRoutes]).then((routes) => {
         return routes[0].concat(routes[1]).concat(routes[2]);
       })
