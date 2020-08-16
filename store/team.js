@@ -31,8 +31,11 @@ export const actions = {
     commit("setLoading", false)
   },
   async getRanking({commit}, pouleCode) {
-    const ranking = await this.$axios.$get(`https://nevobostanden20200622101750.azurewebsites.net/api/GetRanking?code=s4UgnF03If4FA/9szhGxnLT4Xa/mcUrAXUP5FqVrgahJmcIevCa/nA==&poule=${pouleCode}`)
-    commit("setRanking", ranking)
+    try {
+      const ranking = await this.$axios.$get(`https://nevobostanden20200622101750.azurewebsites.net/api/GetRanking?code=s4UgnF03If4FA/9szhGxnLT4Xa/mcUrAXUP5FqVrgahJmcIevCa/nA==&poule=${pouleCode}`)
+      commit("setRanking", ranking)
+    } catch (error) {
+    }
   },
   async clearRanking({commit}) {
     commit("clearRanking")
