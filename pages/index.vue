@@ -17,6 +17,8 @@
         class="webshop-button inline-block w-full mb-4 align-center text-lg px-4 py-2 leading-none shadow rounded hover:shadow-xl text-smashing hover:text-white hover:bg-smashing mt-4 lg:mt-0"
         @click.native="menuClick"
       ><img src="@/static/images/teaco.png" />Smashing '72 Webshop</a>
+      <br />
+      <iframe src="https://bannerbuilder.sponsorkliks.com/skinfo.php?&background-color=FFFFFF&text-color=304B61&header-background-color=304B61&header-text-color=FFFFFF&odd-row=FFFFFF&even-row=09494a&odd-row-text=09494a&even-row-text=ffffff&type=financial&club_id=11880&width=300&height=250" frameborder="0" width="300" height="250"></iframe>
     </div>
   </div>
 </template>
