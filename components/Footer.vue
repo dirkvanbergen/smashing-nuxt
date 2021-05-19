@@ -6,6 +6,8 @@
     <span class="sm:hidden md:inline px-2">-</span>
     <a class="hover:underline" href="http://oud.smashing72.nl/" target="_blank">Oude website</a>
     <span class="sm:hidden md:inline px-2">-</span>
+    <a class="hover:underline" href="https://www.sponsorkliks.com/winkels.php?club=11880" target="_blank">Sponsorkliks</a>
+    <span class="sm:hidden md:inline px-2">-</span>
     <span class v-html="copyright"></span>
   </div>
 </template>
