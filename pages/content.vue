@@ -29,11 +29,12 @@ import Statuten from "@/components/Statuten";
 import Reglement from "@/components/Reglement";
 import Inschrijfformulier from "@/components/Inschrijfformulier";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import render from "@/modules/render-options";
 export default {
   components: { ContentSideMenu, TeamsOverview, CommitteeOverview, TrainingSchedule, Statuten, Reglement, Inschrijfformulier },
   methods: {
     documentToHtmlString(text) {
-      return documentToHtmlString(text);
+      return documentToHtmlString(text, render.options);
     }
   },
   computed: {

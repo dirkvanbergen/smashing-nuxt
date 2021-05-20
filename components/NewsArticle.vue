@@ -16,6 +16,7 @@
 </template>
 <script>
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import render from "@/modules/render-options";
 export default {
     props:['post'],
   methods: {
@@ -26,7 +27,8 @@ export default {
       }
     },
     documentToHtmlString(doc) {
-      return documentToHtmlString(doc);
+      console.log(render.options);
+      return documentToHtmlString(doc, render.options);
     }
   },
   filters: {
