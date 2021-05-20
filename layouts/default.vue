@@ -1,28 +1,19 @@
 <template>
   <div>
-    <!-- <Header @menu-opened="menuOpened" /> -->
-    <div class="container">
+    <Header />
+    <div class="container mt-4">
       <nuxt/>
     </div>
-    <Footer>This is the footer</Footer>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 export default {
-  components: { Footer },
-  data() {
-    return {
-      menuOpen: false
-    }
-  },
-  methods: {
-    menuOpened(isOpen) {
-      this.menuOpen = isOpen;
-    }
-  }
+  components: { Footer, Header }
 };
 </script>
 

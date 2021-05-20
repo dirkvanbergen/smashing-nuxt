@@ -1,12 +1,23 @@
 <template>
-  <div class="side-menu flex flex-col shadow px-4 pb-2">
-    <h1 class="text-xl text-semibold py-4 mb-1 border-b">{{currentItem.fields.title}}</h1>
-    <nuxt-link
-      class="my-2 hover:underline"
-      :to="{name: 'custom', params: {item: currentItem.fields.slug, page: link.fields.slug}}"
-      v-for="(link, index) in siblings"
-      :key="index"
-    >{{link.fields.title}}</nuxt-link>
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">{{ currentItem.fields.title }}</h4>
+      </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"
+          v-for="(link, index) in siblings"
+          :key="index">
+        <nuxt-link
+          class="text-smashing"
+          :to="{
+            name: 'custom',
+            params: { item: currentItem.fields.slug, page: link.fields.slug },
+          }"
+          >{{ link.fields.title }}</nuxt-link
+        ></li>
+        </ul>
+    </div>
   </div>
 </template>
 
@@ -19,13 +30,13 @@ export default {
     siblings() {
       var currentItemId = this.currentItem.sys.id;
       var siblings = this.$store.state.pages.headers.filter(
-        page => page.fields.parent.sys.id === currentItemId
+        (page) => page.fields.parent.sys.id === currentItemId
       );
-      siblings.sort((a,b) => a.fields.order - b.fields.order);
-      
+      siblings.sort((a, b) => a.fields.order - b.fields.order);
+
       return siblings;
-    }
-  }
+    },
+  },
 };
 </script>
 

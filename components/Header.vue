@@ -1,82 +1,144 @@
 <template>
-  <div class="mb-8 shadow bg-smashing w-screen z-10">
-    <nav class="p-6">
-      <div class="container mx-auto flex flex-wrap items-center justify-between flex-wrap relative">
-        <nuxt-link
-          :to="{name:'index'}"
-          class="flex items-center flex-shrink-0 text-white mr-2 md:mr-6"
-          @click.native="closeMenu"
-        >
-          <img
-            src="@/static/images/LogSma.svg"
-            alt="smashing logo"
-            class="fill-current h-8 w-8 mr-2"
-            width="54"
-            height="54"
-          />
-          <span class="font-bold text-3xl tracking-tight">Smashing'72</span>
-        </nuxt-link>
-        <div class="block lg:hidden">
-          <a class="flex items-center px-3 py-2 rounded border-2 text-white border-white cursor-pointer" 
-            @click.stop="openMenu">
-            <svg class="fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-              :class="{'opacity-0 pointer-events-none h-0 w-0': menuOpened, ' h-4 w-4':!menuOpened}">
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
-            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-              :class="{'opacity-100 pointer-events-auto h-4 w-4': menuOpened, ' h-0 w-0 opacity-0 pointer-events-none': !menuOpened}">
-              <line x1="0" y1="0" x2="20" y2="20" stroke="white" stroke-width="3" stroke-line-cap="round" />
-              <line x1="0" y1="20" x2="20" y2="0" stroke="white" stroke-width="3" stroke-line-cap="round"  />
-            </svg>
-          </a>
-        </div>        
-        <div class="nav-mobile px-6 lg:hidden fixed right-0 w-0 h-0 opacity-0 bg-smashing"
-          :class="{'w-screen h-screen opacity-100': menuOpened}"
-          ref="navMobile">
-          <div class="container mx-auto pb-6">
-            <MenuItems @menu-click="closeMenu" menu-type="mobile" />
-            <!-- <HeaderButtons @menu-click="closeMenu" /> -->
-          </div>
-        </div>
-        <div class="block flex-grow hidden lg:flex lg:items-stretch lg:w-full">
-          <MenuItems />
-          <!-- <HeaderButtons /> -->
+  <div class="container-fluid header">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <nuxt-link
+            class="navbar-brand text-white"
+            :to="{ name: 'index' }"
+            @click.native="showMenu = ''"
+            ><h3>
+              <img
+                src="@/static/images/LogSma.svg"
+                alt="smashing logo"
+                width="75"
+                height="75"
+                style="float: left; margin-right: 20px"
+              />
+              Smashing'72
+            </h3>
+            <span class="small"
+              >De leukste volleybalvereniging van Diemen!</span
+            >
+          </nuxt-link>
         </div>
       </div>
-    </nav>
+      <nav class="navbar navbar-expand-md">
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+        >
+          <span class="navbar-toggler-icon">X</span>
+        </button>
+        <div
+          class="navbar-collapse justify-content-between"
+          id="navbarCollapse"
+        >
+          <div class="navbar-nav">
+            <nuxt-link
+              :to="{ name: 'index' }"
+              class="nav-item nav-link text-white h4"
+              >Home</nuxt-link
+            >
+            <div
+              class="nav-item dropdown"
+              v-for="(item, index) in items"
+              :key="index"
+            >
+              <a
+                href="#"
+                class="nav-link dropdown-toggle text-white h4"
+                data-toggle="dropdown"
+                @click="showMenu = showMenu == item.fields.slug ? '' :item.fields.slug"
+                >{{ item.fields.title }}</a
+              >
+              <div class="dropdown-menu" :class="{'show': showMenu === item.fields.slug }">
+                <nuxt-link
+                class="dropdown-item"
+                  @click.native="showMenu = ''"
+                  v-for="(subItem, subIndex) in getPages(item)"
+                  :key="subIndex"
+                  :to="{
+                    name: 'custom',
+                    params: {
+                      page: subItem.fields.slug,
+                      item: item.fields.slug,
+                    },
+                  }"
+                >
+                  {{ subItem.fields.title }}
+                </nuxt-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
   </div>
 </template>
 
 <script>
-import MenuItems from "@/components/MenuItems";
-
 export default {
-  components: { MenuItems },
-  data() {
+  data: () => {
     return {
-      menuOpened: false
-    };
+      showMenu: ''
+    }
   },
   methods: {
-    openMenu() {
-      this.menuOpened = !this.menuOpened;
-      this.$emit('menu-opened', this.menuOpened);
+    getPages(menuItem) {
+      var pages = this.pages.filter(
+        (page) => page.fields.parent.sys.id === menuItem.sys.id
+      );
+      pages.sort((a, b) => a.fields.order - b.fields.order);
+
+      if (menuItem.fields.slug === "teams") {
+        pages.splice(0, 0, this.seniorTeams);
+      } else if (menuItem.fields.slug === "jeugd-teams") {
+        pages.splice(0, 0, this.jeugdTeams);
+      }
+      return pages;
     },
-    closeMenu() {
-      this.menuOpened = false;
-    }
-  }
+  },
+  computed: {
+    teams() {
+      return this.$store.state.teams.teams;
+    },
+    jeugdTeams() {
+      return this.teams
+        .filter((team) => team.fields.isJeugdTeam)
+        .sort((a, b) => a.fields.order - b.fields.order);
+    },
+    seniorTeams() {
+      return this.teams
+        .filter((team) => !team.fields.isJeugdTeam)
+        .sort((a, b) => a.fields.order - b.fields.order);
+    },
+    pages() {
+      return this.$store.state.pages.headers;
+    },
+    items() {
+      const reducer = (acc, val) => {
+        if (
+          acc.filter((item) => item.sys.id === val.fields.parent.sys.id)
+            .length === 0
+        ) {
+          acc.push(val.fields.parent);
+        }
+        return acc;
+      };
+      var items = this.pages.reduce(reducer, []);
+      items.sort((a, b) => a.fields.order - b.fields.order);
+      return items;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.nav-mobile {
-  top: 93px;
-  transition: all .2s ease;
-}
-
-svg {
-  transition: all .2s ease;
+.header {
+  background-color: #b00;
 }
 </style>
 

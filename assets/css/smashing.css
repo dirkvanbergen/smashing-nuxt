@@ -8,6 +8,15 @@ body {
     color: #622;
 }
 
-.card-header {
+.text-smashing, .text-smashing:hover, .text-smashing:active {
+    color: #622;
+}
+
+.news-article .card-header {
     background-color: #b00;
+}
+
+.md-content p {
+    padding: 1em 0;
+    white-space: pre-line;
 }

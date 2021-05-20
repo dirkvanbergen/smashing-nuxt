@@ -1,14 +1,11 @@
 <template>
-  <article class="card mb-4">
+  <article class="card news-article mb-4">
     <div class="card-header">
       <h5 class="text-white">
         {{ post.fields.title }}
       </h5>
     </div>
     <div class="card-body">
-      <div class="text-muted">
-        {{ $moment(post.sys.updatedAt).calendar() }}
-      </div>
       <div
         class="md-content"
         v-html="documentToHtmlString(post.fields.text)"
@@ -43,6 +40,11 @@
               class="self-center w-1/2 h-1/2 mt-2"
           /></a>
         </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="text-muted">
+        {{ $moment(post.sys.updatedAt).calendar() }}
       </div>
     </div>
   </article>
