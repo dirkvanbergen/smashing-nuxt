@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <h2
-          class="text-xl text-bold mb-1 border-smashing border-b text-smashing"
-        >{{post.fields.title}}</h2>
-        <div class="text-smashing pr-1">{{post.sys.createdAt | formatDate}}</div>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="text-xl text-bold mb-1 border-smashing border-b text-smashing">{{post.fields.title}}</h2>
+        </div>
+        <div class="text-smashing pr-1">{{ $moment(post.sys.updatedAt).calendar() }}</div>
         <div class="md-content" v-html="documentToHtmlString(post.fields.text)"></div>
         <div class="flex flex-row flex-wrap -mx-2" v-if="post.fields.attachments && post.fields.attachments.length > 0">
           <div class="news-attachment flex-grow-0 flex-shrink-0 w-1/2 xl:w-1/6 md:w-1/4 p-2" v-for="(attachment, attachmentIndex) in post.fields.attachments" :key="attachmentIndex">
@@ -12,7 +12,7 @@
               <img src="@/static/images/ball.svg" class="self-center w-1/2 h-1/2 mt-2"></a>
           </div>
         </div>
-    </div>
+    </article>
 </template>
 <script>
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
@@ -27,7 +27,6 @@ export default {
       }
     },
     documentToHtmlString(doc) {
-      console.log(render.options);
       return documentToHtmlString(doc, render.options);
     }
   },

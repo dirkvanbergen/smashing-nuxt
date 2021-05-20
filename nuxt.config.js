@@ -3,8 +3,23 @@ const contentful = require('contentful')
 
 module.exports = {
   plugins: ['~/plugins/fontawesome'],
-  modules: ['@nuxtjs/dotenv', '@nuxtjs/markdownit', '@nuxtjs/axios', '~modules/blacklist-routes.js'],
+  modules: [
+    '@nuxtjs/dotenv', 
+    '@nuxtjs/markdownit', 
+    '@nuxtjs/axios', 
+    '~modules/blacklist-routes.js',
+
+  // https://go.nuxtjs.dev/bootstrap
+  '@nuxtjs/bootstrap-vue',],
   devModules: ['@nuxtjs/tailwindcss'],
+  buildModules: [,
+    '@nuxtjs/moment',    
+  ],
+
+  moment: {
+    defaultLocale: 'nl',
+    locales: ['nl']
+  },
   /*
   ** Headers of the page
   */
