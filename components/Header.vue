@@ -6,7 +6,6 @@
           <nuxt-link
             class="navbar-brand text-white"
             :to="{ name: 'index' }"
-            @click.native="showMenu = ''"
             ><h3>
               <img
                 src="@/static/images/LogSma.svg"
@@ -46,18 +45,21 @@
               class="nav-item dropdown"
               v-for="(item, index) in items"
               :key="index"
+                @mouseleave="showMenu = ''"
             >
               <a
                 href="#"
                 class="nav-link dropdown-toggle text-white h4"
                 data-toggle="dropdown"
+                style="margin-bottom: 0px;"
                 @click="showMenu = showMenu == item.fields.slug ? '' :item.fields.slug"
                 >{{ item.fields.title }}</a
               >
-              <div class="dropdown-menu" :class="{'show': showMenu === item.fields.slug }">
+              <div class="dropdown-menu" :class="{'show': showMenu === item.fields.slug }" 
+                style="margin-top: 0px;">
                 <nuxt-link
+                @mousedown="this.click()"
                 class="dropdown-item"
-                  @click.native="showMenu = ''"
                   v-for="(subItem, subIndex) in getPages(item)"
                   :key="subIndex"
                   :to="{

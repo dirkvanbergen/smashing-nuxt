@@ -25,3 +25,12 @@ body {
     color: #d00;
     text-decoration: underline;
 }
+
+.btn-smashing {
+    background-color: #b00;
+    border-color: #b00;
+}
+.btn-smashing:hover {
+    background-color: #900;
+    border-color: #900;
+}
