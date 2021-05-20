@@ -11,7 +11,6 @@ module.exports = {
 
   // https://go.nuxtjs.dev/bootstrap
   '@nuxtjs/bootstrap-vue',],
-  devModules: ['@nuxtjs/tailwindcss'],
   buildModules: [,
     '@nuxtjs/moment',    
   ],

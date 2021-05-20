@@ -49,10 +49,9 @@
 
 <script>
 import MenuItems from "@/components/MenuItems";
-import HeaderButtons from "@/components/HeaderButtons";
 
 export default {
-  components: { MenuItems, HeaderButtons },
+  components: { MenuItems },
   data() {
     return {
       menuOpened: false

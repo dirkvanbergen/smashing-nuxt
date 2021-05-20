@@ -68,7 +68,7 @@ export default {
       console.log(this.$route);
     }
   },
-  async fetch({ store, params }) {
+  async fetch({ store }) {
     await store.dispatch("pages/getPageHeaders");
   }
 };
