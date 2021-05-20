@@ -1,5 +1,5 @@
 <template>
-  <footer class="container-fluid">
+  <footer class="container-fluid mt-4">
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
         <a :href="sporthalDiemen" target="_blank">Sporthal Diemen</a>

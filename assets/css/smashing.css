@@ -20,3 +20,8 @@ body {
     padding: 1em 0;
     white-space: pre-line;
 }
+
+.md-content p a, .md-content p a:hover, .md-content p a:active {
+    color: #d00;
+    text-decoration: underline;
+}

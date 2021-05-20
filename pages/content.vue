@@ -12,8 +12,6 @@
       <CommitteeOverview v-if="currentPage.fields.slug === 'commissies'"/>
       <TeamsOverview v-if="currentPage.fields.slug === 'teams'" :teams="teams" />
       <TeamsOverview v-if="currentPage.fields.slug === 'jeugd-teams'" :teams="teams" />
-      <TrainingSchedule v-if="currentPage.fields.slug === 'trainingsschema' || currentPage.fields.slug === 'jeugd-trainingsschema'" />
-      <Inschrijfformulier v-if="appendSignUpForm" />
     </article>
   </div>
 </template>
@@ -22,12 +20,10 @@
 import ContentSideMenu from "@/components/ContentSideMenu";
 import TeamsOverview from "@/components/TeamsOverview";
 import CommitteeOverview from "@/components/CommitteeOverview";
-import TrainingSchedule from "@/components/TrainingSchedule";
-import Inschrijfformulier from "@/components/Inschrijfformulier";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import render from "@/modules/render-options";
 export default {
-  components: { ContentSideMenu, TeamsOverview, CommitteeOverview, TrainingSchedule, Inschrijfformulier },
+  components: { ContentSideMenu, TeamsOverview, CommitteeOverview },
   methods: {
     documentToHtmlString(text) {
       return documentToHtmlString(text, render.options);
@@ -36,11 +32,6 @@ export default {
   computed: {
     isJeugdOverview(){
       return this.currentPage.fields.slug === 'jeugd-teams';
-    },
-    appendSignUpForm() {
-      return this.currentPage.fields.slug === 'inschrijfformulier'
-      || this.currentPage.fields.slug === 'proeftrainen-jeugd'
-      || this.currentPage.fields.slug === 'proeftrainen-senioren';
     },
     currentPage() {
       return this.$store.state.page.currentPage;
