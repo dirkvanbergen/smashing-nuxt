@@ -22,7 +22,6 @@
 </template>
 
 <script>
-//:class="{'opacity-100 pointer-events-auto': expanded === item.fields.slug, 'opacity-0 pointer-events-none': expanded !== item.fields.slug}"
 export default {
   data() {
     return {

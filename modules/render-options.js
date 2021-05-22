@@ -9,7 +9,7 @@ export default {
         var file = node.data.target.fields.file;
         if (file.contentType.substr(0, 5) === 'image') {
           var title = node.data.target.fields.title;
-          return `<a href="https:${file.url}" title="${title}" target="_blank"><img alt="${title}" src="${file.url}" /></a>`
+          return `<a href="https:${file.url}" title="${title}" target="_blank"><img alt="${title}" src="${file.url}" style="max-width:100%" /></a>`
         }
       }
     }

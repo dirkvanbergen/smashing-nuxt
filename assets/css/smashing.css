@@ -5,13 +5,32 @@ body {
     height: 100%;
     flex-direction: column;
     overflow-x: hidden;
+    color: #622;
+    background-color: #eee;
 }
 
-.md-content a {
-    text-decoration: underline;
+.text-smashing, .text-smashing:hover, .text-smashing:active {
+    color: #622;
+}
+
+.news-article .card-header {
+    background-color: #b00;
 }
 
 .md-content p {
-    padding: 1em 0;
     white-space: pre-line;
+}
+
+.md-content p a, .md-content p a:hover, .md-content p a:active {
+    color: #d00;
+    text-decoration: underline;
+}
+
+.btn-smashing {
+    background-color: #b00;
+    border-color: #b00;
+}
+.btn-smashing:hover {
+    background-color: #900;
+    border-color: #900;
 }

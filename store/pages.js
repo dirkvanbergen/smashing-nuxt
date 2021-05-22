@@ -16,20 +16,33 @@ export const mutations = {
 
 export const actions = {
   async getPages({ commit }) {
-    const response = await client.getEntries({
-      content_type: "page"
+    const pages = await client.getEntries({
+      content_type: "page",
+      order: "fields.order"
     })
-    if (response.items.length > 0) {
-      commit("setPages", response.items)
+    const teams = await client.getEntries({
+      content_type: "team",
+      order: "fields.order"
+    })
+    var all = teams.items.concat(pages.items);
+    if (all.length > 0) {
+      commit("setPages", all)
     }
   },
   async getPageHeaders({ commit }) {
-    const response = await client.getEntries({
+    const pageHeaders = await client.getEntries({
       content_type: "page",
       select: "fields.title,fields.slug,fields.order,fields.parent"
     })
-    if (response.items.length > 0) {
-      commit("setPageHeaders", response.items)
+    const teamHeaders = await client.getEntries({
+      content_type: "team",
+      select: "fields.title,fields.slug,fields.order,fields.parent"
+    })
+
+    var all = teamHeaders.items.concat(pageHeaders.items);
+
+    if (all.length > 0) {
+      commit("setPageHeaders", all)
     }
   }
 }

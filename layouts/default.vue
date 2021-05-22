@@ -1,32 +1,21 @@
 <template>
-  <div class="page w-screen flex flex-col text-gray-900" :class="{'h-screen overflow-y-hidden': menuOpen, 'min-h-screen': !menuOpen}">
-    <Header @menu-opened="menuOpened" />
-    <div class="container mx-auto flex-grow main-content">
-      <nuxt/>
+  <div>
+    <Header />
+    <Navigation />
+    <div class="container mt-4">
+      <nuxt />
     </div>
-    <Footer class="footer w-full p-4 pin-b">This is the footer</Footer>
+    <Footer />
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Navigation from "@/components/Navigation";
 
 export default {
-  components: { Header, Footer },
-  data() {
-    return {
-      menuOpen: false
-    }
-  },
-  methods: {
-    menuOpened(isOpen) {
-      this.menuOpen = isOpen;
-    }
-  }
+  components: { Footer, Header, Navigation }
 };
 </script>
-
-<style>
-</style>
 
