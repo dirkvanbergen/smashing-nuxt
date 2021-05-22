@@ -6,11 +6,11 @@
           <b-navbar-toggle
             target="nav-collapse"
             type="button"
-            class="navbar-toggler"
+            class="navbar-toggler border-0"
             data-toggle="collapse"
             data-target="#navbarCollapse"
-          >
-          </b-navbar-toggle>
+          ><font-awesome-icon icon="bars" class="text-white" />
+          </b-navbar-toggle><span class="d-md-none text-white ml-2 h5">Smashing '72</span>
           <b-collapse is-nav id="nav-collapse">
             <b-navbar-nav>
               <b-nav-item :to="{ name: 'index' }">Home</b-nav-item>

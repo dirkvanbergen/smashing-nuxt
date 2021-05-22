@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid header pt-2">
+  <div class="container-fluid header pt-2 d-none d-md-block">
     <div class="container">
       <div class="row">
         <div class="col">

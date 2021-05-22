@@ -16,7 +16,7 @@
       <input type="hidden" name="form-name" value="contact" />
       <div class="form-group row">
         <label class="col-md-2 col-form-label" for="recepient-field">Aan</label>
-        <div class="col-md-4">
+        <div class="col-md-10 col-lg-6 col-xl-4">
           <select
             v-model="$route.params.to"
             class="form-control"
@@ -36,13 +36,13 @@
       </div>
       <div class="form-group row">
         <label class="col-md-2 col-form-label" for="naam-field">Naam</label>
-        <div class="col-md-4">
+        <div class="col-md-10 col-lg-6 col-xl-4">
           <input class="form-control" name="naam" id="naam-field" type="text" />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-md-2 col-form-label" for="email-field">Email</label>
-        <div class="col-md-4">
+        <div class="col-md-10 col-lg-6 col-xl-4">
           <input class="form-control" name="email" id="email-field" type="email" />
         </div>
       </div>
@@ -51,11 +51,11 @@
       </div>
       <div class="form-group row">
         <label class="col-md-2 col-form-label" for="bericht-field">Bericht</label>
-        <div class="col-md-4">
+        <div class="col-md-10 col-lg-6 col-xl-4">
           <textarea class="form-control" name="bericht" id="bericht-field" cols="30" rows="10"></textarea>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-10 col-lg-6 col-xl-4 offset-md-2">
         <button type="submit" class="btn btn-primary btn-block btn-smashing">Verstuur</button>
       </div>
     </form>
