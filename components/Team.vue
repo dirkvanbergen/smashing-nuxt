@@ -1,7 +1,5 @@
 <template>
-  <div class="row">
-    <ContentSideMenu class="col-md-3"/>
-    <div class="col-md-9">
+    <div class="">
       <div class="">
         <h1 class="">{{currentTeam.fields.title}}</h1>
         <h3 class="" v-if="currentTeam.fields.level">{{currentTeam.fields.level}}</h3>
@@ -26,14 +24,11 @@
         <img :alt="currentTeam.fields.teamFoto.fields.title" :src="currentTeam.fields.teamFoto.fields.file.url" />
       </div>
     </div>
-  </div>
 </template>
 
 <script>
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-import ContentSideMenu from "@/components/ContentSideMenu";
 export default {
-  components: { ContentSideMenu },
   methods: {
     documentToHtmlString(doc) {
       return documentToHtmlString(doc);
@@ -41,7 +36,7 @@ export default {
   },
   computed: {
     currentTeam() {
-      return this.$store.state.team.currentTeam;
+      return this.$store.state.page.currentPage;
     },
     ranking() {
       return this.$store.state.team.ranking;
@@ -50,30 +45,13 @@ export default {
       return this.$store.state.team.isLoading;
     }
   },
-  async fetch({ store, params }) {
-    await store.dispatch("team/getTeamBySlug", params.slug);
+  async fetch({ store }) {
 
-    let item, page;
-    if (store.state.team.currentTeam.fields.isJeugdTeam) {
-      item = "jeugd";
-      page = "jeugd-teams";
-    } else {
-      item = "senioren";
-      page = "teams";
-    }
-    await store.dispatch("page/getPageBySlug", {
-      item: item,
-      slug: page
-    });
-
-    if (store.state.team.currentTeam.fields.pouleCode) {
-      await store.dispatch("team/getRanking", store.state.team.currentTeam.fields.pouleCode);
+    if (store.state.page.currentPage.fields.pouleCode) {
+      await store.dispatch("team/getRanking", store.state.page.currentPage.fields.pouleCode);
     } else {
       await store.dispatch("team/clearRanking");
     }
-
-    await store.dispatch("teams/getTeams");
-    await store.dispatch("pages/getPageHeaders");
   }
 };
 </script>
@@ -83,4 +61,3 @@ export default {
   text-decoration: underline;
 }
 </style>
-

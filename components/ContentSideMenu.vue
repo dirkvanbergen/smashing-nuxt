@@ -6,7 +6,7 @@
       </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item"
-          v-for="(link, index) in siblings"
+          v-for="(link, index) in sideMenuItems"
           :key="index">
         <nuxt-link
           class="text-smashing"
@@ -36,6 +36,11 @@ export default {
 
       return siblings;
     },
+    sideMenuItems() {
+      if (!this.teams) { return this.siblings; }
+      return this.teams
+
+    }
   },
 };
 </script>

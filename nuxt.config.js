@@ -4,15 +4,15 @@ const contentful = require('contentful')
 module.exports = {
   plugins: ['~/plugins/fontawesome'],
   modules: [
-    '@nuxtjs/dotenv', 
-    '@nuxtjs/markdownit', 
-    '@nuxtjs/axios', 
+    '@nuxtjs/dotenv',
+    '@nuxtjs/markdownit',
+    '@nuxtjs/axios',
     '~modules/blacklist-routes.js',
 
-  // https://go.nuxtjs.dev/bootstrap
-  '@nuxtjs/bootstrap-vue',],
+    // https://go.nuxtjs.dev/bootstrap
+    '@nuxtjs/bootstrap-vue',],
   buildModules: [,
-    '@nuxtjs/moment',    
+    '@nuxtjs/moment',
   ],
 
   moment: {
@@ -50,7 +50,7 @@ module.exports = {
   ** Extend router to support dynamic page structure
   */
   router: {
-    extendRoutes (routes, resolve) {
+    extendRoutes(routes, resolve) {
       routes.push({
         name: 'custom',
         path: '/:item/:page?',
@@ -75,7 +75,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -92,45 +92,35 @@ module.exports = {
   generate: {
     routes: () => {
       const client = contentful.createClient({
-        space:  process.env.CTF_SPACE_ID,
-        accessToken: process.env.CTF_CD_ACCESS_TOKEN
+        space: "crmkzp2rr7hq",
+        accessToken: "6N9kZ1ncGM6uS9otrP0Hy6n5NXA8BmW5nFJCkzTmgWE"
       });
 
       const teamRoutes = client.getEntries({
-          content_type: 'team'
+        content_type: 'team'
       }).then((response) => {
-          return response.items.map(entry => {
-              return {
-                  route: `/teams/${entry.fields.slug}`,
-                  payload: entry
-              };
-          });
+        return response.items.map(entry => {
+          let route = `/${entry.fields.parent.fields.slug}/${entry.fields.slug}`
+          return {
+            route: route,
+            payload: entry
+          };
+        });
       });
 
       const pageRoutes = client.getEntries({
-          content_type: 'page',
-      }).then((response) => {
-          return response.items.map(entry => {
-              return {
-                  route: `/${entry.fields.parent.fields.slug}/${entry.fields.slug}`,
-                  payload: entry
-              };
-          });
-      });
-
-      const menuRoutes = client.getEntries({
-        content_type: 'menuItem',
+        content_type: 'page',
       }).then((response) => {
         return response.items.map(entry => {
           return {
-            route: `/${entry.fields.slug}`,
+            route: `/${entry.fields.parent.fields.slug}/${entry.fields.slug}`,
             payload: entry
-          }
-        })
-      })
+          };
+        });
+      });
 
-      return Promise.all([teamRoutes, menuRoutes, pageRoutes]).then((routes) => {
-        return routes[0].concat(routes[1]).concat(routes[2]);
+      return Promise.all([teamRoutes, pageRoutes]).then((routes) => {
+        return routes[0].concat(routes[1]);
       })
     },
   }
