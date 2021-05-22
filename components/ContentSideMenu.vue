@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-none d-lg-block">
     <div class="card">
       <div class="card-header">
         <h4 class="card-title">{{ currentItem.fields.title }}</h4>
