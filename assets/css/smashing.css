@@ -6,7 +6,6 @@ body {
     flex-direction: column;
     overflow-x: hidden;
     color: #622;
-    background-color: #eee;
 }
 
 .text-smashing, .text-smashing:hover, .text-smashing:active {
