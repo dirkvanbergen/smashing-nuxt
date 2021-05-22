@@ -34,6 +34,7 @@
                   {{ subItem.fields.title }}
                 </b-dropdown-item>
               </b-nav-item-dropdown>
+              <b-nav-item :to="{ name: 'contact' }">Contact</b-nav-item>
             </b-navbar-nav>
           </b-collapse>
         </div>
