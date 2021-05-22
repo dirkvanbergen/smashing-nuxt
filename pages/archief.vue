@@ -30,7 +30,6 @@ export default {
   },
   async fetch({ store }) {
     await store.dispatch("news/getNews", {limit: NEWS_LIMIT});
-    await store.dispatch("pages/getPageHeaders");
   }
 };
 </script>

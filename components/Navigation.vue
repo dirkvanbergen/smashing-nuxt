@@ -44,11 +44,7 @@
 
 <script>
 export default {
-  data: () => {
-    return {
-      showMenu: "",
-    };
-  },
+  props: ['pages'],
   methods: {
     getPages(menuItem) {
       var pages = this.pages.filter(
@@ -59,9 +55,6 @@ export default {
     },
   },
   computed: {
-    pages() {
-      return this.$store.state.pages.headers;
-    },
     items() {
       const reducer = (acc, val) => {
         if (

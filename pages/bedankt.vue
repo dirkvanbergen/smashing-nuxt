@@ -6,9 +6,6 @@
 
 <script>
 export default {
-  async fetch({ store }) {
-    await store.dispatch("pages/getPageHeaders");
-  }
 };
 </script>
 

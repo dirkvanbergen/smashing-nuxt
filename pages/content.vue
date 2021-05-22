@@ -45,9 +45,7 @@ export default {
         item: params.item,
         slug: params.page
       });
-    } 
-
-    await store.dispatch("pages/getPageHeaders");
+    }
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <Navigation />
+    <Navigation :pages="pages" />
     <div class="container mt-4">
       <nuxt />
     </div>
@@ -15,7 +15,12 @@ import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
 
 export default {
-  components: { Footer, Header, Navigation }
+  components: { Footer, Header, Navigation },
+  computed: {
+    pages() {
+      return this.$store.state.pages.headers;
+    },
+  }
 };
 </script>
 
