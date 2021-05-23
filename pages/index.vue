@@ -30,7 +30,7 @@ export default {
   },
   async fetch({ store }) {
     await store.dispatch("news/getNews", {limit: NEWS_LIMIT});
-  }
+  },
 };
 </script>
 <style scoped lang="scss">

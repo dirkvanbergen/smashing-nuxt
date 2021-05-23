@@ -39,14 +39,18 @@ export default {
       return this.$store.state.page.isNotFound;
     },
   },
-  async fetch({ store, params }) {
-    if (params.page) {
+  async fetch({ store, params, payload }) {
+    if (payload) {
+        store.commit("page/setPageType", payload.pageType);
+        store.commit("page/setCurrentPage", payload.entry);
+        store.commit("pages/setPageHeaders", payload.headers);
+    } else if (params.page) {
       await store.dispatch("page/getPageBySlug", {
         item: params.item,
         slug: params.page
       });
     }
-  }
+  },
 };
 </script>
 

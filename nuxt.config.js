@@ -90,11 +90,22 @@ module.exports = {
     }
   },
   generate: {
-    routes: () => {
+    routes: async () => {
       const client = contentful.createClient({
         space: process.env.CTF_SPACE_ID,
         accessToken: process.env.CTF_CDA_ACCESS_TOKEN
       });
+
+      const pageHeaders = await client.getEntries({
+        content_type: "page",
+        select: "fields.title,fields.slug,fields.order,fields.parent"
+      })
+      const teamHeaders = await client.getEntries({
+        content_type: "team",
+        select: "fields.title,fields.slug,fields.order,fields.parent"
+      })
+  
+      var headers = teamHeaders.items.concat(pageHeaders.items);
 
       const teamRoutes = client.getEntries({
         content_type: 'team'
@@ -103,7 +114,7 @@ module.exports = {
           let route = `/${entry.fields.parent.fields.slug}/${entry.fields.slug}`
           return {
             route: route,
-            payload: entry
+            payload: { entry, headers, pageType: "team" } 
           };
         });
       });
@@ -114,7 +125,7 @@ module.exports = {
         return response.items.map(entry => {
           return {
             route: `/${entry.fields.parent.fields.slug}/${entry.fields.slug}`,
-            payload: entry
+            payload: { entry, headers, pageType: "content" } 
           };
         });
       });
