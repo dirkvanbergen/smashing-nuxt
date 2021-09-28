@@ -12,7 +12,7 @@ export default {
           return `<a href="https:${file.url}" title="${title}" target="_blank"><img alt="${title}" src="${file.url}" style="max-width:100%" /></a>`
         }
         if (file.contentType === 'application/pdf') {
-          return `<iframe src="${file.url}" width="100%" height="700px" style="border: 0;"></iframe><a href="https:${file.url}" title="${title}" target="_blank">Download ${title}</a>`
+          return `<p><iframe src="${file.url}" width="100%" height="700px" style="border: 0;"></iframe><a href="https:${file.url}" title="${title}" target="_blank">Download ${title}</a><p>`
         }
       }
     }
