@@ -7,7 +7,7 @@
       </div>
       <div class="col-md-4 col-sm-12">
       <a
-        href="https://smashingdiemen.teaco.nl/"
+        href="https://erimashop.nl/smashing"
         target="_blank"
         class="webshop-button"
         @click.native="menuClick"
