@@ -78,7 +78,7 @@ export default {
 .navbar {
   background-color: #b00;
 }
-/deep/ .nav-link {
+::v-deep(.nav-link) {
   color: white !important;
   font-weight: bold;
   position: relative;
