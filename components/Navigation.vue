@@ -15,7 +15,6 @@
             <b-navbar-nav>
               <b-nav-item :to="{ name: 'index' }">Home</b-nav-item>
               <b-nav-item-dropdown
-                left
                 v-for="(item, index) in items"
                 :key="index"
                 :text="item.fields.title"
@@ -78,7 +77,7 @@ export default {
 .navbar {
   background-color: #b00;
 }
-::v-deep(.nav-link) {
+::v-deep .nav-link { 
   color: white !important;
   font-weight: bold;
   position: relative;
