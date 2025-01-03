@@ -8,7 +8,7 @@
             :to="{ name: 'index' }"
             ><h3>
               <img
-                src="@/static/images/LogSma.svg"
+                src="/images/LogSma.svg"
                 alt="smashing logo"
                 width="75"
                 height="75"

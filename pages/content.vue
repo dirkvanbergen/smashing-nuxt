@@ -5,7 +5,6 @@
       <div v-if="pageType == 'content'">
         <h1 class="">{{currentPage.fields.title}}</h1>
         <p class="md-content" v-html="documentToHtmlString(currentPage.fields.text)"></p>
-        <CommitteeOverview v-if="currentPage != null && currentPage.fields.slug === 'commissies'" />
       </div>
       <Team v-if="pageType == 'team'" />
     </article>
@@ -15,11 +14,10 @@
 <script>
 import ContentSideMenu from "@/components/ContentSideMenu";
 import Team from "@/components/Team";
-import CommitteeOverview from "@/components/CommitteeOverview";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import render from "@/modules/render-options";
 export default {
-  components: { ContentSideMenu, CommitteeOverview, Team },
+  components: { ContentSideMenu, Team },
   methods: {
     documentToHtmlString(text) {
       return documentToHtmlString(text, render.options);
