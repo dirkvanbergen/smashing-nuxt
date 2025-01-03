@@ -34,11 +34,7 @@
             v-else-if="attachment.fields"
             :href="attachment.fields.file.url"
             target="_blank"
-            >{{ attachment.fields.title }}
-            <img
-              src="@/static/images/ball.svg"
-              class="self-center w-1/2 h-1/2 mt-2"
-          /></a>
+            >{{ attachment.fields.title }}</a>
         </div>
       </div>
     </div>
