@@ -70,5 +70,9 @@ export default {
   &:hover {
     transform: translateY(-5px);
   }
+
+  img {
+    width: 100%;
+  }
 }
 </style>
