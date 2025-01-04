@@ -20,7 +20,7 @@
           {{rank.team.name}}
         </div>
       </div>
-      <div class="" v-if="currentTeam.fields.teamFoto">
+      <div class="teamPhoto" v-if="currentTeam.fields.teamFoto">
         <img :alt="currentTeam.fields.teamFoto.fields.title" :src="currentTeam.fields.teamFoto.fields.file.url" />
       </div>
     </div>
@@ -59,5 +59,9 @@ export default {
 <style>
 .extra-text a {
   text-decoration: underline;
+}
+
+.teamPhoto img {
+  width: 100%;
 }
 </style>
