@@ -34,7 +34,7 @@
             v-else-if="attachment.fields"
             :href="attachment.fields.file.url"
             target="_blank"
-            >{{ attachment.fields.title }}</a>
+            ><font-awesome-icon icon="file" class="text-smashing"></font-awesome-icon> {{ attachment.fields.title }}</a>
         </div>
       </div>
     </div>
@@ -65,14 +65,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .news-attachment {
-  transition: all 0.2s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-
   img {
     width: 100%;
   }
+
+  margin-top: 10px;
 }
 </style>
