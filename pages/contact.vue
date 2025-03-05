@@ -46,6 +46,12 @@
           <input class="form-control" name="email" id="email-field" type="email" />
         </div>
       </div>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label" for="phone-field">Telefoonnummer</label>
+        <div class="col-md-10 col-lg-6 col-xl-4">
+          <input class="form-control" name="phone" id="phone-field" type="tel" />
+        </div>
+      </div>
       <div class="d-none">
         <label>Dit veld niet invullen <input name="bot-field" /></label>
       </div>
